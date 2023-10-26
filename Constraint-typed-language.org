@@ -1,4 +1,4 @@
-#+TITLE: NeoAlgol
+#+TITLE: Neo-Algol
 #+AUTHOR: Aleksandr Petrosyan
 
 * What this is
@@ -32,7 +32,7 @@
   However problems in GUI programming are problems of programming
   period.  We have not learned how to make arranging buttons and
   creating interface elements easy, so how are we supposed to make
-  arranging booleans and fixing problems easy?
+  arranging Booleans and fixing problems easy?
 
   In the following sections we shall attempt to classify the programs
   according to some common key features.  These shall be made in
@@ -463,7 +463,7 @@
     directly, the programmer has the safety net of delegating the
     responsibility to the end user. In this instance the programmer is
     lucky: the problem is easily understood using the limited
-    information given in the modeline.
+    information given in the mode-line.
 
     But what would be a better approach? Well, addressing the issue
     should prove to be a good start: a read operation is only
@@ -484,7 +484,7 @@
     word. That being said, there is a better design that can
     accommodate for both leniency and expedience.
 
-    My approach would be to change the way the filesystem is
+    My approach would be to change the way the file-system is
     represented to the end user. Even if you perma-delete a file, you
     don't actually perform anything destructive, you simple flagged
     previously occupied space as free, and much like in the recycle
@@ -512,7 +512,7 @@
     what's going on, (note always better to use =rm -vfr=).
 
     Are you sure you want to undo typing on IOS is the most egregious
-    example of that. The shake gesture is an unintuitive one, unless
+    example of that. The shake gesture is an un-intuitive one, unless
     you're an entitled 12-year-old that is inclined to shake the
     device in rage if something goes wrong. So instead of coming up
     with a better approach, they use a modal dialog.
@@ -639,7 +639,7 @@
     one to delineate the styles and mark them, separately from having
     to define every aspect of the style. Because that's the case, the
     papers' authors are only worried about the contents, while the
-    typesetters and compositors of the scientific jounrals worry about
+    typesetters and compositors of the scientific journals worry about
     providing the styles. Thus, instead of having to compose the
     references by hand, in e.g. LibreOffice writer (or god forbid
     Word), we instead have the luxury of using a class file that
@@ -659,10 +659,10 @@
    is wrong. Not that it's incorrect, but that this is not necessarily
    an acceptable state of being. I believe that the way we approach
    GUI programming in the modern day is very similar to how we
-   apporached programming in general, before high-level languages were
+   approached programming in general, before high-level languages were
    invented.
 
-   Consider that you need to write a program that assks the user for
+   Consider that you need to write a program that asks the user for
    the input, then prints the output that's a function of the
    input. if you were writing this in a language like e.g. C++ it
    would look like this:
@@ -684,7 +684,7 @@
    do the same thing, but in a GUI program?
 
    Well, for starters we need to choose a toolkit. Because there's no
-   such thing as a cross-platform interface to a gui toolkit that is
+   such thing as a cross-platform interface to a GUI toolkit that is
    installed by default. We can expect everyone to have a 256 colour
    terminal, but not everyone can be expected to have a 640x480
    monitor.
@@ -698,11 +698,11 @@
    standard to the language. What if a =QLabel= doesn't accept a
    =std::string=, but rather a =QString=.
 
-   Is it any wonder that nobody bothers writing a gui, unless they
+   Is it any wonder that nobody bothers writing a GUI, unless they
    need to?
 
    But why are we in such a pitiful state of being? Is it because
-   writing a gui program is more complex? I'd argue that it's supposed
+   writing a GUI program is more complex? I'd argue that it's supposed
    to be simpler than console... Think about how much work the
    language designers did for you in that small snippet. You don't
    worry about reading input from keyboard, symbol by symbol,
@@ -722,7 +722,7 @@
    that have never evolved. A slightly better situation can be
    observed with Objective C programs, Cocoa and Mac OS. Getting
    started there is much easier, because the language makes writing
-   gui programs easier, not harder, by maintaining an Object-oriented
+   GUI programs easier, not harder, by maintaining an Object-oriented
    rather than Class oriented programming paradigm.
 
    But the issue is that objects are not the best approach. They don't
@@ -734,7 +734,7 @@
 
    We need a new paradigm for GUI programming. It can't be purely
    procedural, as state cannot all be global, and procedural programs
-   have a tendency to be unreadable if the codebase is sufficiently
+   have a tendency to be unreadable if the code-base is sufficiently
    large. It can't be only object oriented as the object orientation
    does not neatly map the paradigms of the interaction onto code. It
    can't be purely functional either, as interfaces are primarily
@@ -745,10 +745,10 @@
 *** Signals and slots.
 
     This is one of the few language features that are basically a
-    requirement for efficient gui programming. Sure, under the hood
+    requirement for efficient GUI programming. Sure, under the hood
     the representation may be procedural, but events need to be
     first-class citizens of the language in which the program is
-    written in. Every programming language that is used for GUIs in
+    written in. Every programming language that is used for GUI's in
     any significant capacity is either capable of or extended to
     include signals and messaging.
 
@@ -783,7 +783,7 @@
     providing an integral type is also not a requirement of the
     language, instead it should allow you to do bit mashing, and you
     should then be able to hand-roll your own types. Of course, nobody
-    does that. Moreover, this problem is not unique to GUIs and is a
+    does that. Moreover, this problem is not unique to GUI's and is a
     bit of a nuisance for terminal applications.
 
     There is no good solution for it in terminal land. You have
@@ -829,7 +829,7 @@
     seems to run counter to the zen of python (although this is not
     the most egregious omission).
 
-    So from this brief detour into comparing gui to terminal
+    So from this brief detour into comparing GUI to terminal
     programming, one sees that the functions are good for tracking
     dependencies. However, while we can expect that the shell will
     pass the function arguments to the program, we cannot expect for
@@ -841,7 +841,7 @@
     designers of Unix should have known that this wasn't the best
     approach.
 
-    So in a gui programming language, you want to be able to express
+    So in a GUI programming language, you want to be able to express
     the requirement that UI element =X= should have value =F(Y)= if
     and only if =Y= is set.
 
@@ -850,7 +850,7 @@
     There are many things that programmers refer to as variables,
     which in truth are not. The word Variable implies mutability. We
     have constants in most major languages, albeit not always
-    well-named (java's final omes to mind as a particularly odd
+    well-named (java's final comes to mind as a particularly odd
     choice), yet we refer to them as variables.
 
     It's about time we stopped. A constant is a value referred to by
@@ -888,7 +888,7 @@
     in many languages. Constant serves the purpose of decaying to a
     literal, and you can achieve much of the same effect by simply not
     modifying the variables. Will the compiler know what to do?
-    Probably. It's actually not that difficult to check whehther ther
+    Probably. It's actually not that difficult to check whether thee
     had been any assignments to a particular symbol and thus infer
     that it's a constant. However, the people who design languages
     deemed it necessary to include this.
@@ -935,7 +935,7 @@
 
     #+END_SRC
     Instead of having to specify the anchors, the widths and the
-    explcitly bind the events to objects.
+    explicitly bind the events to objects.
 
     It does however, provide the tools necessary for that to be
     achievable. For example, a library based on Qt and QML called
@@ -977,9 +977,9 @@
 
     What I really want, is a server-side solution that acts like
     stderr, but for graphical programs. A useful shorthand is that
-    every program when run, cretes a splash screen, wherein each stage
+    every program when run, creates a splash screen, wherein each stage
     of the loading, that is normally written to stdout is written in
-    clear, and selectable text. A progress-bar is not necessary, but
+    clear, and select-able text. A progress-bar is not necessary, but
     usually useful.
 
     If a graphical program had encountered an error and needs to be
@@ -1012,9 +1012,9 @@
 
 ** Types functions and views.
 
-   At this tage you might be wondering: evertyhing I've described is
+   At this stage you might be wondering: everything I've described is
    available as part of QML, and doesn't seem to be particularly
-   difficult to implemrnt in QML, as a guideline, or as an add-on.
+   difficult to implement in QML, as a guideline, or as an add-on.
 
    Up until now, yes. However, I have substantial differences in
    areas where this language is the hardest to change.
@@ -1044,7 +1044,7 @@
    this means that you need two separate functions to request and to
    process the file name.
 
-   One could (and should) wrap this in a javascript function, that
+   One could (and should) wrap this in a JavaScript function, that
    creates a temporary object, connects the "job done" signal from
    =fileDialog=, to it's process function, conveniently written as a
    lambda, forks off a thread, runs the processing, and blocks until
@@ -1083,11 +1083,11 @@
    provided. The only issue may arise with optional arguments, but
    they too can be represented as functions.
 
-   Ok. Are there any other benefits to choosing functions to represent
-   gui views? Well, aside from having an explicit method of
+   OK. Are there any other benefits to choosing functions to represent
+   GUI views? Well, aside from having an explicit method of
    representation of dependencies, and a straightforward method of
    propagating changes, at the very least, changes within the
-   interface. Another boon is that tyoe systems often retain much more
+   interface. Another boon is that type systems often retain much more
    information than they let on. This principle is the cornerstone of
    Coq, and is also a common method of documentation surfing in
    languages like Haskell. Often, the name and shape of the types,
@@ -1112,7 +1112,7 @@
 
    Literate programming is a relatively old concept in computer
    science. It is how people approach teaching, but rarely how they
-   approach designining programs.
+   approach designing programs.
 
    Emacs, calls this self-documentation. I would argue that the
    concept is far deeper than just documentation. You see, a program
@@ -1144,8 +1144,8 @@
    like this.
 
    For every kind of information that one can represent in the
-   interface, a datatype is created, in this case, todoItem. I prefer
-   a terse syntax, of algebraic datatypes, but I can foresee a more
+   interface, a datatype is created, in this case, =todoItem=. I prefer
+   a terse syntax, of algebraic data-types, but I can foresee a more
    class-oriented syntax being equally as useful.
 
    #+BEGIN_Example
@@ -1154,7 +1154,7 @@
    #+END_EXAMPLE
 
 
-   Since this is an algebraic datatype, a consturctor from these two
+   Since this is an algebraic datatype, a constructor from these two
    items being procured separately should be easily inferred. Ideally
    you want the compiler to generate the view that would allow you to
    create the item. Since every parameter has a documentation string,
@@ -1169,10 +1169,10 @@
 
    We somewhat abuse the type annotation syntax, and it may very well
    be a stupid decision. However, one can conceivably reserve the
-   Infer typename for cases where the type can be inferred. The same
+   Infer type-name for cases where the type can be inferred. The same
    can be said about the constructor, except lowercase =infer= refers
    to functions whose signature can be inferred from the
-   datastructure.
+   data-structure.
 
    * Validation
 
@@ -1184,7 +1184,7 @@
      if an object or a structure of a specific type forms, and is proper,
      then a programmer needs not worry about making sure that the state
      of the object and relative members of it are in a cohesive
-     state. Things like private members are only modofied using accessor
+     state. Things like private members are only modified using accessor
      functions, to ensure that the state of the object is compatible with
      the mental model that a programmer might have. This is one of the
      cornerstones of object oriented programming (or rather
@@ -1204,14 +1204,14 @@
      Another diametrically similar approach is the notion of an
      algebraic datatype. It resolves the issue of unnecessary verbosity,
      by allowing recursive definitions. The notion of *multiple
-     datatypes* represent the same kind of data, is achieved via
-     typeclasses, rather than interface classes and inheritance,
+     data-types* represent the same kind of data, is achieved via
+     type-classes, rather than interface classes and inheritance,
      however, the crucial problem of maintaining a coherent state of the
      data is still there.
 
-     Typeclasses and algebraic datatypes are common in functional
-     languages, because one can have the convention, that the datatypes'
-     contruction is the only location where the validity of the datatype
+     Type-classes and algebraic data-types are common in functional
+     languages, because one can have the convention, that the data-types'
+     construction is the only location where the validity of the datatype
      can be called into question. Later on, the datatype shall be valid,
      because its value cannot change. Thus instead of maintaining a
      linearly growing number of setter methods that preserve the
@@ -1268,7 +1268,7 @@
        #+END_SRC
 
      I wouldn't call this datatype elegant. But I will give it a few
-     merits: for starters, the datastructure is immutable, as it
+     merits: for starters, the data-structure is immutable, as it
      doesn't implement setters. That's also the reason why it wouldn't
      compile.
 
@@ -1306,17 +1306,17 @@
    #+END_SRC
 
    Easy, right? Well no. We do get some benefits out of this
-   architecture: you cannot accidentlally misplace the type
+   architecture: you cannot accidentally misplace the type
    constructors, and end up with an incoherent mess. Moreover, here
    you are forced into thinking about the datatype as immutable. If
    you think about it more than a second, it doesn't make sense for
    dates to change, but it does make sense to construct and unbox the
-   datatypes in place.
+   data-types in place.
 
    The unfortunate issue is that while we know that the datatype
    doesn't change until after construction, the data that we construct
    it from has to be checked.  The class-oriented approach has the
-   benefit of the datastructure being self-maintaining. Another
+   benefit of the data-structure being self-maintaining. Another
    unfortunate consequence, is that in functional languages all state
    must be immutable. It makes sense here: you don't change the date
    to which you schedule your meeting, you use a different date to
@@ -1326,11 +1326,11 @@
    games, a similar argument can be made.
 
    Another subtle problem is inherent to the way dates are validated.
-   What constitues a valid day, specifically if the value 29, 30 and
+   What constitutes a valid day, specifically if the value 29, 30 and
    31 is valid, really depends on the month. All months except
    February are fine with 30, half are also fine with 31, and for
    February, 30 and 31 are always wrong. But to make matters worse,
-   whether 29-th of February is a valid date, is a statement that
+   whether 29-Th of February is a valid date, is a statement that
    depends on the year. And then the precise algorithm depends on
    whether or not we are referring to the Gregorian calendar or the
    Julian calendar. This itself is a messy problem, which can
@@ -1344,7 +1344,7 @@
    depending on the year in question, the counter for when the year
    has to change technically moves. One cannot be rid of a
    discontinuity only mask it, and even then poorly. In a procedural,
-   or class-oriented world, this is all fine. The functiona
+   or class-oriented world, this is all fine. The functional
    programmers would be told that their type systems are extremely
    powerful and that this is fine, but the functional paradigm has
    another problem swept under the rug.
@@ -1363,7 +1363,7 @@
    thought would say that the type inherently and inextricably linked
    to the procedure of either parsing or validating a particular date.
    Specifically, they'd say that the parsing procedure must accept as
-   input some more generaliseable /type/ (a fact which we will dispute
+   input some more generalise-able /type/ (a fact which we will dispute
    later): a string of sorts, and produce *some type* that is derived
    from =Date= as defined above; specifically it's either a Monoid of
    =Date= or =Date= itself, specifically to signal that the parsing
@@ -1401,7 +1401,7 @@
    say that it was a single integer of that size. They might even
    gloat because it allows them to not have to redefine the operations
    of addition and subtraction. The former would produce a ton of
-   bolierplate code that does not automatically participate everywhere
+   boilerplate code that does not automatically participate everywhere
    it should, while the latter will very soon realise that the
    addition of =Day= objects also needs to take care of the month, and
    so the expression =31+30= is not always meaningful; it can mean how
@@ -1500,8 +1500,8 @@ that is free to lay out as it pleases, you the programmer have to
 pretend that it is an expensive object to copy, and thus have to
 construct dates in a peculiar fashion. Of course, if you want to
 communicate the intent that the object is indeed a value that is
-trivially copyable, you would =£[derive(Copy)]= on it, which would in
-principle fix the breakdown of communication. An OOP-officionado would
+trivially copy-able, you would =£[derive(Copy)]= on it, which would in
+principle fix the breakdown of communication. An OOP-aficionado would
 gloat now and say, that indeed the method of defining setters is
 superior, not realising that for one, this approach would be
 significantly less ergonomic to use (one would have to return =&mut
@@ -1509,8 +1509,8 @@ Self=, to be able to chain setters, using setters falsely communicates
 to the programmer that there would be a function call overhead, when
 indeed the same aggressive inlining would take place. For all of its
 faults, =Python= at least allows setters to use native syntax, but the
-corollary of that, is that the bening-looking assignments that are not
-so bening in most cases, are even more /less-bening/ when in Python; a
+corollary of that, is that the benign-looking assignments that are not
+so benign in most cases, are even more /less-benign/ when in Python; a
 function call in Python can do anything up to and including using an
 actual physical printer when one calls the =print= function, but that
 is a common problem of using functions to control modification. There
@@ -1526,7 +1526,7 @@ disallowing direct mutation, but allowing one to express allowable
 mutations.  It is a safe, though false, assumption that if a type of
 modification was not envisioned when the structure was defined, than
 that it must be disallowed.  The result of that is an explosion of
-code and a slow development cycle, which are bening problems for the
+code and a slow development cycle, which are benign problems for the
 time being, that can be fixed without altering the system too much.
 
 The real problem is that programmers routinely engage in a kind of
@@ -1584,7 +1584,7 @@ difference is that the compiler, knowing that one type is annotated as
 integral, and the other as floating point, that when we say =a*b= we
 mean floating point multiplication not any other kind.
 
-Re-intepretation of data, is what the type system was supposed to
+Re-interpretation of data, is what the type system was supposed to
 prevent. Segmentation faults became rarer, and being off by one in the
 index variable does not cause a buffer overflow. This is not to say
 that types are useless.  In fact, I would argue that during the 80-odd
@@ -1597,7 +1597,7 @@ the compiler is doing is constraint checking. Much of programming
 revolves around makings sure that critical architectural requirements
 are met, and types are the most basic form of contract. On the one
 hand, we want to have a system, in which a constraint about the
-state of a valid instance of a datastructure can be very precise. On
+state of a valid instance of a data-structure can be very precise. On
 the other hand, one should like to be able to abstract away
 constraints that the programmer does not use, or need. In simple
 terms, /you want your code to be specific enough to run, but generic
@@ -1609,7 +1609,7 @@ enough to be useful./
    down, rather than bottom-up, as is customary in most other
    programming languages. We shall define a constraint, as the only
    type keyword for the language, and build up the familiar notions of
-   class, object, concept all the way to the particular datatypes. A
+   class, object, concept all the way to the particular data-types. A
    constraint is an expression of the form
 
          #+begin_example
@@ -1674,7 +1674,7 @@ id::a* -> a
    and any other kind of typing system - second. In other words, our
    language must be generic before supporting any types.
 
-   Ok. So have we proved that =One= is an enumerable? Yes. Now, if the
+   OK. So have we proved that =One= is an enumerable? Yes. Now, if the
    compiler has done its work, it should complain about the ansatz,
    but recognised that the some function that maps an enumerable onto
    an enumerable exists. Why did we need the ansatz? Well, mainly
@@ -1734,8 +1734,8 @@ So a temporary syntactic sugar, would be to say that
    mean that the value has a type ( a function that maps a to be is
    also a type), and that each time a constraint is mentioned, it is
    being checked. If it fails, then the next code block is not being
-   compiled. Think of of tehse expression as a hybrid between the C
-   declarations and a toplevel =#ifdef=.
+   compiled. Think of of these expression as a hybrid between the C
+   declarations and a top-level =#ifdef=.
 
 
    So why do we need this? What we see is a dependently-typed
@@ -1792,9 +1792,9 @@ So a temporary syntactic sugar, would be to say that
    #+end_example
 
    So, fine, we handled the noise on our end. What would then happen
-   toour end user? Well, depends on the programming language. Most
+   to our end user? Well, depends on the programming language. Most
    likely -- the program will crash, and the user will have to start
-   over, wondering what went wrong. Hopefully, In the gui, a helpful
+   over, wondering what went wrong. Hopefully, In the GUI, a helpful
    message will pop up and say 'undefined behaviour requested.'
 
    But the better approach would be that if on the language level,
@@ -1817,7 +1817,7 @@ somefunc a b =  if a> b then difference a b
 
 Hm. What does this mean? Well, it's like Python's duck-typing, only
 functional. For one, the biggest reason why nested if statements are
-dis-couraged, and polymoprhic decision-making is *en*-couraged, is
+dis-courage, and polymorphic decision-making is *en*-couraged, is
 that the parallel if statement anti-pattern is a common trap. But in
 this case, a redundant constraint check can be caught early and the code -- greatly simplified. 
 
@@ -1871,7 +1871,7 @@ to illustrate, one can approach the problem simply.
 
    We have a marked improvement: we no longer are constrained by the
    simple definition of the game, as if we needed to, we could add
-   additional rules to the rules datastructure, and we could extend
+   additional rules to the rules data-structure, and we could extend
    the game to other possibilities, other names and other, potentially
    overlapping nomenclature (if we added say the number 9, which is
    divisible by 3).
@@ -1881,7 +1881,7 @@ to illustrate, one can approach the problem simply.
    twice. Did anything happen before we are to return. A minor issue,
    but of crucial importance in many cases. Consider who should check
    if a pointer is null? Who should free a referenced shared object?
-   How much dead code is in the codebase? Is the library, as written,
+   How much dead code is in the code-base? Is the library, as written,
    too general?
 
    let us come back to how to resolve the issue. First, naively the
@@ -1971,25 +1971,25 @@ to illustrate, one can approach the problem simply.
    already, the appeal of a good-enough, maintainable code is too
    great. Moreover, we have introduced an asymmetry to the problem:
    All version of working code produce 'FizzBuzz', but in the second
-   attempt, this is due to integers hasing to integers, and the
+   attempt, this is due to integers hashing to integers, and the
    incidental implementation detail of python, that the integers hash
    to themselves, and thus the first condition to be checked is always
    the Fizz and not the Buzz. Finally, if I had asked you to extend
    this to a case where an extra tag would be used, how would you do
    it? In the second case it is enough to add an element to a
-   datastructure, in the third, you probably need another helper
+   data-structure, in the third, you probably need another helper
    function in the chain. You have the potential to add the helper
    function in the wrong part of the chain, thus introducing a
-   discordant cocophany of FizzBarBuzz rather than FizzBuzzBar.
+   discordant cacophony of FizzBarBuzz rather than FizzBuzzBar.
 
    This problem is plaguing modern programming languages. Different
    ones, to a different extent, however all sharing the issue of that
    expressive code and efficient code are at odds with each other.
 
    But, if you think about it, almost everything novel and good in a
-   modrn programming language is a result of some kind of
+   modern programming language is a result of some kind of
    optimisation, based on some kind of constraint. Functional lets you
-   easily do multithreading, provided your source code is constrained
+   easily do multi-threading, provided your source code is constrained
    to immutable state. Tail call optimisation is an optimisation based
    around a constraint that your function doesn't do anything after,
    that might need the results of the previous function call. Can you
@@ -2051,7 +2051,7 @@ to illustrate, one can approach the problem simply.
    satisfy it or you don't. But you could have other, non-implicit
    partitioning: you could be a mammal, a reptile or an insect. If
    previous code ruled out the possibility of you being a plant, or an
-   amphybian, either one of the three and only one of the three will
+   amphibian, either one of the three and only one of the three will
    resolve to executable code. This allows us to do ternary operations
    using short convenient syntax, and define our own if statement.
 
@@ -2071,10 +2071,10 @@ to illustrate, one can approach the problem simply.
    a::<constraint> then a boolean flag is set, and the answer is `yes,
    we double check the condition', plus a lot of runtime overhead. But
    we have accomplished something; a clever compiler can look at the
-   codebase, and carry through the boolean flags. it effectively knows
+   code-base, and carry through the boolean flags. it effectively knows
    that the language defines what to do, but it doesn't *have to* map
    functions to functions, and necessarily have as many as the end
-   user wanted. It can effectively look at this, and create a codepath
+   user wanted. It can effectively look at this, and create a code-path
    that doesn't double check any of the answers. The crucial reason is
    that much like in the case of the final take of the purely
    functional fizzbuzz that uses complicated lambdas to encode what to
@@ -2085,7 +2085,7 @@ to illustrate, one can approach the problem simply.
 * Constraint based typing in detail.
 
   What we have found is not new. In C++ you have a built-in constraint
-  that a value has to be const. It will not allow you to perform
+  that a value has to be =const=. It will not allow you to perform
   operations that alter the object inside the body of a function as if
   the assignment and mutators were undefined for it. The whole of
   functional programming can be expressed as a constraint. No data can
@@ -2099,7 +2099,7 @@ to illustrate, one can approach the problem simply.
 ** Mixing paradigms :idea:
 
    Haskell, isn't exactly a purely functional language. It has a
-   mechanism for mutating state, called monads. The genius of the
+   mechanism for mutating state, called monad. The genius of the
    monad is in that it allows on the level of the language to express
    purity of some code and imperativity of other. In other words, if
    you ran =ghci= and imported a library, you could tell, which
@@ -2111,7 +2111,7 @@ to illustrate, one can approach the problem simply.
    The same can be said of other languages that you wouldn't consider
    functional, but that can support a functional paradigm. =constexpr=
    functions are pure functions, hence one can annotate an entire
-   codebase as constexpr and have a small subset of code that isn't in
+   code-base as =constexpr= and have a small subset of code that isn't in
    a single main function. From the perspective of the programmer, the
    two paradigms have converged on the fact that purity allows for
    extra optimisations that are definitely worthwhile as they come
@@ -2119,7 +2119,7 @@ to illustrate, one can approach the problem simply.
    programs is because we want side effects: we want IO, and we can't
    truly shove all of it into the Operating system, because programs
    whose entire point is to present information are still
-   programs. Besides, re-regging the operating system to accept return
+   programs. Besides, re-=regging= the operating system to accept return
    types other than integers would require an extensive change of the
    ABIs all over the world. So we're essentially stuck in a world that
    wants both no side-effects and side-effects. The solution is at
@@ -2169,8 +2169,8 @@ to illustrate, one can approach the problem simply.
    problem. But there are a plethora of programs for which the halting
    problem is obvious; like this one. Cool!
 
-   Ok so we fixed it, by requiring, just like any up and coming
-   sofwatre developer during an interview, that we need the value to
+   OK so we fixed it, by requiring, just like any up and coming
+   software developer during an interview, that we need the value to
    be positive:
 
    #+begin_example
@@ -2255,12 +2255,12 @@ to illustrate, one can approach the problem simply.
    integer of varying sizes, a floating point constant and even a
    string, but we have no evidence of use to the contrary. If you had
    compiled this, the constant would be killed off. If you had not,
-   and JITTED evertyhing, then the type would be determined by the
+   and JITTED everything, then the type would be determined by the
    first usage, so if you passed it to =factorial= that we've just
    defined, it would constrain to an =Int=, and later uses that have a
    conflicting type would have to relax the constraint.
 
-   Ok, so the compiler is eager to do a lot of constraining... Why
+   OK, so the compiler is eager to do a lot of constraining... Why
    didn't it constrain to an =enumerable=? Assuming that the module is
    visible, this is because the =enumerable= is a lazy constraint. By
    default, all constraints are lazy. This is a good thing. If you see
@@ -2289,7 +2289,7 @@ to illustrate, one can approach the problem simply.
    an enumerable. No problem so far, if we let our language infer that
    =y= is also enumerable.
 
-   Ok, but how can we avoid the expensive compile-time computation?
+   OK, but how can we avoid the expensive compile-time computation?
    Many ways. There's a syntax that allows you to override the
    constraints a shortcut if you will. In our case, the shortcut is
    that we already have an integer type, and literals for it, and
@@ -2305,7 +2305,7 @@ to illustrate, one can approach the problem simply.
    are actually good definitions of what an enumerable is. All it
    takes for me to prove that any type is enumerable is to provide a
    function that maps to an integer. Any integer. Usually this is
-   fine, because you can hash *most* datatypes in functional
+   fine, because you can hash *most* data-types in functional
    programming, but what would happen if I relaxed the =immutable=
    constraint? I would still have a non-enumerable, non-hashable type
    that for some reason I can enumerate. Hm.
@@ -2409,11 +2409,11 @@ to illustrate, one can approach the problem simply.
        // and so on
      };
    #+END_SRC
-   Now we can transparently use doubleInts as if they were built
+   Now we can transparently use =doubleInt= s as if they were built
    in. We can also trivially compute the result of adding an integer
-   or a floating point to the doubleInt, we shall be losing precision
+   or a floating point to the =doubleInt=, we shall be losing precision
    in the general case, but as we want to be able to add a rational
-   number to an irrational as we do in math, it makes sense.
+   number to an irrational as we do in maths, it makes sense.
 
    But why oh why can we not attach a property such as an array is
    sorted after sorting it, if we know that it is sorted? Simply put:
@@ -2422,7 +2422,7 @@ to illustrate, one can approach the problem simply.
    complete, they can do what we can do with pen and paper. But you
    don't hear people complaining about functions and saying, "there's
    nothing that functions can do, that I couldn't have achieved using
-   =goto=s". The simpler approach has fallen out of fashion, because
+   =goto= s". The simpler approach has fallen out of fashion, because
    it is hard to execute, and hard to reason about.
 
    How hard are we talking? Let's say we want to encode in C++'s type
@@ -2455,8 +2455,8 @@ to illustrate, one can approach the problem simply.
    create a /mostly/ copy of the collection, which may not necessarily
    be sorted. So do I have to track down every call that might cause
    the loss of the property? Yes, but you can make your life easier,
-   by wrapping a sorted collection into a typeclass. And then
-   implement every collection as an instance of the typeclass until
+   by wrapping a sorted collection into a type-class. And then
+   implement every collection as an instance of the type-class until
    your compiler shuts up. That is a titanic undertaking, probably not
    going to yield the result you expect, will make your library
    non-trivial to use, if it is possible to accomplish at all. Hence
@@ -2465,7 +2465,7 @@ to illustrate, one can approach the problem simply.
    So can constraint based typing solve this issue? Perhaps. If done
    right, there should be an implication that checks for the kinds of
    primitive operations that would break the property. For example,
-   teh definition of the constraint should be that the collection has
+   the definition of the constraint should be that the collection has
    a natural access ordering, and along that ordering, the elements
    are also ordered, in the specified way. Of course checking the
    constraint would be too difficult, so you can say that every output
@@ -2566,7 +2566,7 @@ to illustrate, one can approach the problem simply.
    pie and eat it too. The very reason for the existence of constructs
    is that they are nothing more than syntactic sugar. On the one
    hand, the compiler never has to worry about them. On the other
-   hand, teh user can map the syntactic sugar even when it is not
+   hand, the user can map the syntactic sugar even when it is not
    exactly the source code that someone wrote. This prevents the
    proliferation of moot "best practices", unless they offer a
    tangible benefit.
@@ -2576,17 +2576,17 @@ to illustrate, one can approach the problem simply.
    A key point in the development of C++ was that the language is to
    have a strong static type system. Why?
 
-   As an example, C++ has a language keyword for constexpr, meaning a
+   As an example, C++ has a language keyword for =constexpr=, meaning a
    compile time, purely functional (as in no side effects are
    possible) value or function. As it was added rather late,
    optimisations that would allow for things to be substituted under
    referential transparency have to be built into the compiler and not
    libraries supplied to the end user. If I want to implement a
    library that optimises calls of a specific kind[fn::we shall later
-   define what a =kind= is. ], I have to contact either llvm or GNU
+   define what a =kind= is. ], I have to contact either LLVM or GNU
    compiler collection maintainers, ask them to implement this. If
    it's good, it shall become part of the standard, and every compiler
-   in the rest of the world will be forced to implemnent this, or it
+   in the rest of the world will be forced to implement this, or it
    remains a non-standard extension, meaning that some compilers
    support this, and some don't. But the bigger weakness of this
    approach is that the end user (the programmer), has to think about
@@ -2611,7 +2611,7 @@ to illustrate, one can approach the problem simply.
    all. Instead, you would have conditionals that are baked into the
    process, and are optimised away as seen fit in an utterly opaque
    manner. You wouldn't necessarily avoid the penalty of =vtable=
-   lookups, because odds are that you would be creating a table and
+   look-ups, because odds are that you would be creating a table and
    looking up behaviour. It would also be exceptionally difficult to
    package information. The whole point of OOP and inheritance based
    polymorphism is exposing a potential branch point in the base
@@ -2621,7 +2621,7 @@ to illustrate, one can approach the problem simply.
    What we have done in the constraint oriented approach, is we've
    allowed similar organisation of information, without requiring the
    overhead of class-based design. Just like in Haskell, one can argue
-   that the Monads inject impure and imperative prorgramming into the
+   that the Monads inject impure and imperative programming into the
    pure functional world, one can say that we have injected OOP into
    our paradigm agnostic approach. However, as in the analogical case,
    we have created a tool far more powerful than imperative
@@ -2814,7 +2814,7 @@ to illustrate, one can approach the problem simply.
              print('Hi, I\'m an armenian virus. Please enjoy your insecure software. ')
 
    #+END_SRC
-   can defeat that. We cannot stop anyone from doing that from outside the codebase.
+   can defeat that. We cannot stop anyone from doing that from outside the code-base.
 
    Come to think about it, this vulnerability is also present in the
    C++ version. It can be mitigated somewhat, by clever use of modules
@@ -2909,7 +2909,7 @@ to illustrate, one can approach the problem simply.
    to work. These are the kinds of constraints that you would hope the
    compiler can figure out on its own: it only needs the names[fn::and
    types, or rather constraints needed for the functions to operate]
-   of the functions. Provided that any of the included namespaces has
+   of the functions. Provided that any of the included name-spaces has
    one such function said constraint is satisfied. Can you have
    multiple? Well, this is where you get yourself into conflict
    territory.
@@ -2948,7 +2948,7 @@ to illustrate, one can approach the problem simply.
    other. Similarly if the same is expressed with =.implies=. But we
    can't always rely on such statements being unambiguous
    indicators. Recall that we can have two constraints that are
-   equivalent. Moreover, this connnection may take a lot of digging to
+   equivalent. Moreover, this connection may take a lot of digging to
    establish, if say the aliasing was indirect, and always happened
    through a third constraint. In other words, automatic precedence
    resolution is a problem that cannot be solved for all valid
@@ -2982,7 +2982,7 @@ to illustrate, one can approach the problem simply.
    (<lessThan(a)>, <greaterThan(a)>) .partition <Ordered>
    #+end_example
    We can see that if we had applied a function that periodically and
-   recursively constrained the number, then the numer of constraints
+   recursively constrained the number, then the number of constraints
    on that number would grow. So if we had used the factorial, and
    started with the number =n=, then we would get every less than
    constraint on the way down to the answer. Not great.
@@ -2998,7 +2998,7 @@ to illustrate, one can approach the problem simply.
    #+end_example
 
    Let's put it all together.  Now that we know how conditionals are
-   implenented in the standard library, we know that whenever a
+   implemented in the standard library, we know that whenever a
    condition is satisfied, inside its body the constraint is true.
 
    #+begin_example
@@ -3032,7 +3032,7 @@ to illustrate, one can approach the problem simply.
    conditional is redundant, and can be removed (and remove at compile
    time, in the source code). Not great, but certainly not terrible.
 
-   The issue is that the optimiser is always figthting to make the
+   The issue is that the optimiser is always fighting to make the
    binary simpler, but almost never to make the code simpler. We
    should strive for code simplification first, and binary
    simplification we shall obtain as a consequence of simpler, better
@@ -3047,10 +3047,10 @@ to illustrate, one can approach the problem simply.
    public at large. One of the most common types and the one that is
    actually enforced by enterprise (the lame one), is a description of
    what a function's function is to the functionality of the
-   codebase. It may occasionally be mistaken for describing the
+   code-base. It may occasionally be mistaken for describing the
    invariants of a datatype, but normally those are neatly encoded in
-   the name of the datatype (c.f. OutdoorsOberverSingletonController as
-   opposed to WindowBlinds), with comments mostly reflecting the
+   the name of the datatype (c.f. =OutdoorsOberverSingletonController= as
+   opposed to =WindowBlinds=), with comments mostly reflecting the
    programmer's musings on their years of college education, where they
    learned asymptotic notation.
 
@@ -3059,10 +3059,10 @@ to illustrate, one can approach the problem simply.
    is provided.
 
    Among the positively brilliant design decisions, such comments are
-   sometimes represented in languages as docstrings. Thus instead of
+   sometimes represented in languages as doc-strings. Thus instead of
    being used as some things that are simply ignored by the compiler,
    they serve an intent: to acquaint the user with the
-   functionality. Sadly, in some cases, the docstrings, which are
+   functionality. Sadly, in some cases, the doc-strings, which are
    strings, are exempt from linting. The most important linting tool,
    which is "your string tells the programmer next to nothing", is
    relatively hard to write, as that would require someone more capable
@@ -3094,7 +3094,7 @@ to illustrate, one can approach the problem simply.
    normally, can cause issues or whether or not the typo was in the
    documentation or the name of the function.
 
-   For another example of docstring abuse, let's see
+   For another example of doc-string abuse, let's see
    #+BEGIN_SRC python
      def incabulator(incabulee, workbench, incabulationStrategy=None, **kwargs):
          """The famous incabulator function.
@@ -3128,11 +3128,11 @@ to illustrate, one can approach the problem simply.
    #+END_SRC
 
    So in this example, almost every type hint is violated, and the name
-   of the keyword argument doesn't match the docstring. How long would
+   of the keyword argument doesn't match the doc-string. How long would
    it take you to figure this out? if the defraccculator argument was
    supposed to optimise some behaviour, because of the placebo effect
    of the end programmer, you might never know that it doesn't work! I
-   don't need to tell you that this defeats the purpose of docstrings.
+   don't need to tell you that this defeats the purpose of doc-strings.
 
    Surely if the documentation strings were part of the source code,
    just freely intermixed with prose, one could avoid having to worry
@@ -3148,8 +3148,8 @@ to illustrate, one can approach the problem simply.
    useful.
 
    The second major type of comments is a comment that clarifies the
-   behaviour and a particular choice of datastructure or function, or
-   the particular function that a non-trivially interpretable blob of
+   behaviour and a particular choice of data-structure or function, or
+   the particular function that a non-trivially interpret-able blob of
    code can have. Example:
 
    #+BEGIN_SRC python
@@ -3201,20 +3201,20 @@ to illustrate, one can approach the problem simply.
    assertion. Sure, we don't want that assertion to run all the time,
    and so we deactivate it. The comment about the desired result can be
    communicated, but I'd argue that if the desired result isn't
-   reached, in an overwhelming supermajority of cases, then that is a
+   reached, in an overwhelming super-majority of cases, then that is a
    bug. So this is not quite a "useless piece of communication with the
    programmer", kind of comment, this is a "should be a language
    feature" kind of comment.
 
    Lastly, the block comment right before the raised exception is not
    entirely useless either. If the exceptional state arises, the end
-   user should be made aware of this comment, i.e. if a backtrace is
+   user should be made aware of this comment, i.e. if a back-trace is
    produced, the block comment should be included. The issue here is
    that the conventions on exceptional states in python are not
    entirely clear.
 
    Almost everything that can appear in an except clause is a value
-   Error. Ideally, there should be a field in the ValueError type, that
+   Error. Ideally, there should be a field in the =ValueError= type, that
    says 'comment', and allows the author to (in prose) express the
    sentiment about this particular exceptional state. My issue with
    (even this) solution, is that the comment may refer to the exception
@@ -3229,28 +3229,28 @@ to illustrate, one can approach the problem simply.
    comment out sections of code to deactivate them. Not a bad
    practice. But the usage of comments for this purpose has the
    following consequences. The deactivated snippet is indistinguishable
-   from a docstring example. Moreover, suppose there was a sweeping
-   change in a graph theory codebase. Someone might have thought, that
+   from a doc-string example. Moreover, suppose there was a sweeping
+   change in a graph theory code-base. Someone might have thought, that
    using the word table instead of Matrix, is not the best idea, so
    they replaced every symbol's name (refactored rather), that has
-   table with Matrix. A HashMatrix is a normal type, an
+   table with Matrix. A =HashMatrix= is a normal type, an
    adjacency_matrix_from(adjacency_list) is a perfectly valid function
    signature, however, if said snippet was commented out, most
    refactoring tools would probably not touch it. Sure, users of
    QtCreator would say, ``mine does'', but the overwhelming
-   supermajority does not. You should, as a programmer not be at the
+   super-majority does not. You should, as a programmer not be at the
    behest of your tooling. Or rather, the tooling that permits the
    usage of the language should provide you with the option to perform
    the refactoring according to its internal logic, rather than
    external opinion.
 
    More importantly, the macros in C and C++ (up until recently) have
-   had the intention of allowing to programmatically activate or
+   had the intention of allowing to programmatic-ally activate or
    deactivate snippets. So why on earth would you have two ways of
    doing the exact same thing? Well, for one, because the deactivation
    using macros is verbose. You can achieve the same effect with proper
    configuration of your text editor, e.g. instead of comment on
-   "Ctrl+/", surround with a false ifdef. But it is a luxury that only
+   =Ctrl+/=, surround with a false =ifdef=. But it is a luxury that only
    the languages cursed with Macros can enjoy.
 
    So, our language does not support comments. Instead it supports
@@ -3266,7 +3266,7 @@ to illustrate, one can approach the problem simply.
    /*
    factorial::Int-> Int
    factorial n =
-      "This is an example of an explanatory docstring.";
+      "This is an example of an explanatory doc-string.";
       "While this definition is certainly true, it will not compute. ";
       factorial (n+1) / n
    */
@@ -3288,7 +3288,7 @@ to illustrate, one can approach the problem simply.
 ** The troublesome boilerplate.
 
   The expressions follow the similar pattern to many languages, where
-  the function's referrential value is the final statement that is not
+  the function's referential value is the final statement that is not
   terminated by the semicolon.
 
   Thus, instead of having mandatory boilerplate that has no
@@ -3327,7 +3327,7 @@ to illustrate, one can approach the problem simply.
   (factorial 3).2 would be wrong. it would be 3*2 and no 3*2*1.
 
   So the comma means, add to the structured return, and the semicolon
-  means remove from it. Ok, this sounds interesting. So we have options.
+  means remove from it. OK, this sounds interesting. So we have options.
 
   But that's not all. We can use curly braces too:
   #+begin_example
@@ -3335,11 +3335,11 @@ to illustrate, one can approach the problem simply.
   #+end_example
   What this means is that the collection has no implicit
   ordering. What this also means is that the return type will also
-  contain either the GammaFunction, or the recursive
-  definition. Whichever is done first, is put in the 0-th place,
+  contain either the =GammaFunction=, or the recursive
+  definition. Whichever is done first, is put in the 0-Th place,
   assuming the start is mostly parallel.
 
-  The smicolon is useful here too: one can say that it is the most
+  The semicolon is useful here too: one can say that it is the most
   useful here.
 
   #+begin_example
@@ -3367,7 +3367,7 @@ to illustrate, one can approach the problem simply.
    the square brackets for lists? Well... see for yourselves.
 
    Let's suppose that we have a list of names, alphabetised and kept
-   in a structure, call it namelist.
+   in a structure, call it =namelist=.
 
    #+begin_example
    namelist::List(String)
@@ -3388,42 +3388,42 @@ to illustrate, one can approach the problem simply.
    will require the serialisation library to provide a way to
    reconstruct the alphabetical ordering, or will alphabetise the
    collection itself. So the decision is really up to the API and the
-   contraint system, not the programmer.
+   constraint system, not the programmer.
 
    But what form on earth will the list literal have? Well, who told
-   you that we would even have such a thing? Ok, how about a tuple? No
+   you that we would even have such a thing? OK, how about a tuple? No
    again.  Let me explain. When programming in a language such as
-   StandardML, Haskell, Python or any other language that has a
+   Standard ML, Haskell, Python or any other language that has a
    built-in syntax for a list, what we're actually doing, is finding a
-   simple and reliable datastructure that can keep an ordered and
+   simple and reliable data-structure that can keep an ordered and
    fixed set of elements (a tuple), and a flexible and ordered set of
    elements (list). The specific needs that these meet might not be
-   quite as straightforward, as what the datastructures were designed
+   quite as straightforward, as what the data-structures were designed
    for. Moreover, it is quite possible that the programmer had used a
-   tuple in Haskell for a heterogeneous flexible datastructure, and
+   tuple in Haskell for a heterogeneous flexible data-structure, and
    since returning a tuple versus incrementing a list, from the SLOC
    point of view is similar in nature, doing a potentially linear
    increase every time a list element is to be added is better than
    adding an extra line of code to an overdue project. In the case of
-   functional Languages, where almost universaly the datatypes are all
-   algebraic, because the list =[1,2,3,4]= is much easier to interpret
-   than (Cons 1 (Cons 2 (Cons 3 (Cons 4 (Nil))))) which is mostly
-   noise, a certain syntactic shorthand was preferred. Python, widely
-   regarded as one of the wisest langugaes in the world, has as usual
-   copied the design without understanding the issues for why a
+   functional Languages, where almost universally the data-types are
+   all algebraic, because the list =[1,2,3,4]= is much easier to
+   interpret than =(Cons 1 (Cons 2 (Cons 3 (Cons 4 (Nil)))))= which is
+   mostly noise, a certain syntactic shorthand was preferred. Python,
+   widely regarded as one of the wisest languages in the world, has as
+   usual copied the design without understanding the issues for why a
    specific design decision was made. Perhaps I'm being too harsh on
    it. Perhaps I realise that Python objects, being what they are
-   coudl have just as neatly fit into a resizeable arrayList that
+   could have just as neatly fit into a re-sizeable =arrayList= that
    doubled in size.
 
    Other languages that did not have to contend with immutability, or
    at least not to the extent to which functional languages did, had a
-   natural datastructure of choice. An Array is the default for
-   storing both old (C-style) strings, and a type of datastructure
+   natural data-structure of choice. An Array is the default for
+   storing both old (C-style) strings, and a type of data-structure
    that is built into many languages. Despite the well-developed
    standard library and a slew of built-ins that only operate in on
    the low-level outside the code, Java has support for arrays beside
-   ArrayLists. I would hesitate to appeal to Java's authority, as
+   =ArrayLists=. I would hesitate to appeal to Java's authority, as
    mistakes have been made, and attempts to make things better had
    been mostly unsuccessful, but if Java survived making this decision
    then there must have been a good reason for it.
@@ -3442,7 +3442,7 @@ to illustrate, one can approach the problem simply.
    people chose python because writing things in it was easier. When I
    was writing my masters' thesis, I had to use Python because
    everyone else was using it, despite being more than capable of
-   writing Fortran or C that did the same things, more efficiently and
+   writing FORTRAN or C that did the same things, more efficiently and
    more reproducibly.
 
 
@@ -3452,20 +3452,20 @@ to illustrate, one can approach the problem simply.
    automatically. Haskell cannot deduce the fact that I need a fixed
    length array, because I have a constant that I have no plan to
    modify, and instead uses a list. The API for collections is
-   underdefined and often overdeveloped. In Python there is no way of
+   under-defined and often overdeveloped. In Python there is no way of
    getting a random key value from a dictionary. You are forced to
    choose from popping and putting back, iterating and immediately
    breaking, or worse, converting the dictionary to a list and taking
    the first element. Finally, a graphical application is not
-   bottlenecked by performance, it is bottlenecked by experience and
+   bottle-necked by performance, it is bottle-necked by experience and
    scheduling. Most time is spent reading and dragging the mouse,
    which can be used for maintenance tasks and decision making, while
-   the user is busy trying to click a tickbox with his meat joysticks.
+   the user is busy trying to click a tick-box with his meat joysticks.
    In other words, there is incentive to spend that downtime trying to
-   figure out the best and most fitting datastructure on the fly.
+   figure out the best and most fitting data-structure on the fly.
 
    So We relieve the end user (the programmer) of the duty to choose
-   the datastructure. Instead, we ask them to point out the relevant
+   the data-structure. Instead, we ask them to point out the relevant
    operational features. So when you are preparing a collection of
    values for use in a function, but not as a collection of symbolic
    name, but rather a structured datatype, you specify them in
@@ -3474,7 +3474,7 @@ to illustrate, one can approach the problem simply.
    the ordering of the elements is the only thing that needs to be
    preserved. Similarly, if one simply needs a bag of holding, that
    doesn't have to preserve the ordering of the data, it can be shoved
-   into an unordered datastructure. So let's say that we have
+   into an unordered data-structure. So let's say that we have
    Dijkstra's algorithm and we need to pre-heat the oven so-to-speak
    with a Fibonacci heap? Well, ask yourself, is the ordering of the
    elements preserved, i.e. do things swap places at any place other
@@ -3507,7 +3507,7 @@ to illustrate, one can approach the problem simply.
    #+end_example
    And let's not forget that the List datatype actually has very
    little in terms of concrete behaviour. It doesn't have to be a
-   LinkedList, but if the usage suggests that it might be useful, it
+   =LinkedList=, but if the usage suggests that it might be useful, it
    will be. But there's also the option that the compiler can
    constrain the usage of the list to be as an immutable collection of
    mutable cells. Surely you could save some memory this way. And best
@@ -3516,7 +3516,7 @@ to illustrate, one can approach the problem simply.
 ** Choice and concurrency
 
    The eagle eyed will notice that we've used parentheses to identify
-   options in a constraint slection: the question mark operator. It
+   options in a constraint selection: the question mark operator. It
    stands to reason that the parentheses have their usual meaning, and
    that the choice of parentheses is somehow significant. Indeed it
    is, as using the curly braces relaxes a few of the requirements,
@@ -3587,10 +3587,11 @@ to illustrate, one can approach the problem simply.
    The reason for these specifications is twofold. First of all, the
    compiler can safely assume that the operations within the curly
    braces are possible to re-order preserving the semantics. The
-   implication is that datastructures that might not have the same
+   implication is that data-structures that might not have the same
    layouts, but the same types of fields are equivalent. Secondly, if
    an operation can be done efficiently, but would result in
-   re-ordering, teh compiler is told to do this freely. Thus a particular case of
+   re-ordering, the compiler is told to do this freely. Thus a
+   particular case of
    #+begin_example
    {a + b +c}
    #+end_example
@@ -3607,7 +3608,7 @@ to illustrate, one can approach the problem simply.
 
    This has a profound implication on what the compiler may assume:
    everything within curly braces, and some things withing parentheses
-   can be done concurrently. So a fibonacci sequence function of the
+   can be done concurrently. So a Fibonacci sequence function of the
    form:
    #+begin_example
    fib n = {fib (n-1) + fib (n-2)}
@@ -3635,7 +3636,7 @@ to illustrate, one can approach the problem simply.
    which contradicts the programmer.
 
    Unlike most compilers, and similar to LaTeX, our compiler shall
-   propose that the things that can be reodered be re-ordered, and
+   propose that the things that can be reordered be re-ordered, and
    wrapped in parentheses.
 
 ** ``Is a'', vs ``as a''
@@ -3643,10 +3644,10 @@ to illustrate, one can approach the problem simply.
    What this does, is promote an attitude towards values, where what a
    thing is, is less relevant than how a thing behaves. Some of the
    constraints can be specific enough, so that we can reduce the
-   possible datastructures to 1. They can be too tight, at which point
+   possible data-structures to 1. They can be too tight, at which point
    the programmer has to think which constraint based optimisations
    does she need to sacrifice. And to some extent the compiler is also
-   free to choose the datastructure without having to ask the
+   free to choose the data-structure without having to ask the
    developer. That does not however, mean that the developer is
    removed from the conversation entirely.
 
@@ -3662,11 +3663,11 @@ to illustrate, one can approach the problem simply.
    #+end_example
    If need be standard abbreviations can be made standard. However,
    the programmer has access to the original constraints, and can see
-   that <Unsigned> .implies <Positive>. Instead of using an obscure
-   header, where one needs the wikipedia page to fnid out which
+   that =<Unsigned>= .implies =<Positive>=. Instead of using an obscure
+   header, where one needs the Wikipedia page to find out which
    numeric limit means which thing, the built in tools, provide all of
-   the constraints on the values. So a UInt8, would be
-   <LessThan(256)>. Neat, huh?
+   the constraints on the values. So a =UInt8=, would be
+   =<LessThan(256)>=. Neat, huh?
 
    Now if you are trying to squeeze out as much memory out of your
    machine, and you knew that your tool had mainly used the values of
@@ -3709,10 +3710,10 @@ to illustrate, one can approach the problem simply.
    existence, Python is a counter-example. While it's true that you
    have inheritance, and that you can have obfuscation if you feel
    like it, an object is a thin shell for designating tangled webs of
-   state. One might expect that I would be critical of Javascript, but
+   state. One might expect that I would be critical of JavaScript, but
    despite its best efforts, it does maintain one of the key points of
    OOP. The objects are a sharp delineation of singular state. you can
-   weakly couple them to extenral state, but it is non-idiomatic,
+   weakly couple them to external state, but it is non-idiomatic,
    hence not standard practice.
 
 
@@ -3723,7 +3724,7 @@ to illustrate, one can approach the problem simply.
    excluded signals. If C++ had not had a facility to designate
    classes; object orientation could still be achieved with closures
    to restrict scope and accessibility, and signalling via the strong
-   typing, albeit instead of a neat: things in -> things out, system,
+   typing, albeit instead of a neat: things in → things out, system,
    we would have ordering ambiguity.
 
    But why classes and inheritance? It seems like most OOP-centric
@@ -3745,8 +3746,8 @@ to illustrate, one can approach the problem simply.
    Or at least that's what happens at a low level of
    complexity. Consider a Platypus. Is it a mammal? Are you also sure
    that a Panda is a bear or an overgrown Raccoon. Is an
-   Australopythecus a Human? Is a Gorilla a descendant of the
-   AustraloPythecus? And if not, why do so many people believe that
+   Australopithecus a Human? Is a Gorilla a descendant of the
+   Australopithecus? And if not, why do so many people believe that
    humans evolved from the modern day apes? The shortest answer is,
    because the system doesn't quite describe the world as it
    should. Instead it describes a mostly idealised strictly
@@ -3770,9 +3771,9 @@ to illustrate, one can approach the problem simply.
    structured type. So the programmer had used a hack, that mapped
    strings onto object types and used this to emulate the
    fields. Syntactically, there's little difference between you typing
-   a.m_('field') and a.m_field. This is a very good hack, that became
+   =a.m_('field')= and =a.m_field=. This is a very good hack, that became
    standard in Qt. It is also the main source of frustration when
-   implementing a QAbstractItemModel. Because the runtime lookup is
+   implementing a =QAbstractItemModel=. Because the runtime lookup is
    handled through the facilities not in the core language, it is up
    to the library developer to expose the information, often two or
    more times. The upshot is that it works, and works remarkably well
@@ -3792,7 +3793,7 @@ to illustrate, one can approach the problem simply.
    potential. Templates for some insane reason work no better than
    macros, why do you have a system that resolves overloads and does
    dynamic polymorphic virtual function resolution, when you ignore
-   all of that in your generic datatypes. Why not do type erasure?
+   all of that in your generic data-types. Why not do type erasure?
    Long story short, this didn't work out, and caused many more
    problems. The issue was that you essentially asked your type system
    to take 5, and did a lot of dirty work unsupervised. Problem was,
@@ -3807,7 +3808,7 @@ to illustrate, one can approach the problem simply.
    same as the C++ templates, but far worse, in a language where
    everything is a class.
 
-   THus, we effectively end up with two different languages, with ab
+   Thus, we effectively end up with two different languages, with ab
    initio very different philosophies and purposes, converging on the
    concept-driven design.
 
@@ -3816,12 +3817,12 @@ to illustrate, one can approach the problem simply.
    only datatype for which the declaration on the left doesn't match
    the constructor on the right. C++ came to a very similar system,
    where the template arguments can and should be restricted, but
-   because the current system that utilised template metaprogramming
+   because the current system that utilised template meta-programming
    was too bulky, to reduce the overhead on the programmers, they
    decided that it wasn't such a bad idea to make the requirements
    explicit and easy to understand. It is also coincidental, that
    whenever a heterogeneous collection of objects is to be stored in a
-   single datastructure in Java, the interface representing the
+   single data-structure in Java, the interface representing the
    collective set of constraints is given in angle
    brackets. Similarly, in C++, the template arguments and concepts
    mostly reside within angle brackets.
@@ -3838,11 +3839,11 @@ to illustrate, one can approach the problem simply.
    and many many other things that seem like a good idea in a
    corporate environment, but adds very little in the long
    run. Conceptually speaking, the programmer is faced with a
-   stumbling block: If I need say the ArrayBlockingQueue, which is
+   stumbling block: If I need say the =ArrayBlockingQueue=, which is
    more a description than a name, they not only have to remember the
-   name of the datastructure, which is far longer than it needs to be,
-   but also to remember the path to it. "Is it Java.Util" or
-   "Java.Lang"? Hm. I don't have an issue with this
+   name of the data-structure, which is far longer than it needs to be,
+   but also to remember the path to it. "Is it =Java.Util=" or
+   "=Java.Lang="? Hm. I don't have an issue with this
    system. Remembering the path isn't a big deal. I use this to
    exemplify how deep our fascination with hierarchical organisation
    goes, and how central it was to Java's philosophy.
@@ -3855,14 +3856,14 @@ to illustrate, one can approach the problem simply.
    the IDE, in some areas, rather than a human being. Tooling over
    language features is rather economical, the tools can be designed
    and tested separately, they don't and cant' break existing
-   codebases (not intentionally), they are only used as guidance, and
+   code-bases (not intentionally), they are only used as guidance, and
    as long as the human driving the highly sophisticated autopilot,
    the autopilot can do most of the work. Make no mistake, this is not
    critique, not in the slightest, as I think that offloading most of
    the repetitive tasks onto the machine, while preserving a semblance
    of human readability, is an important factor. The issue with Java
    is that the language had a standard, while the tools did
-   not. Because of that, some codebases have sprouted
+   not. Because of that, some code-bases have sprouted
    adaptations. Since you couldn't guarantee that all fields of a
    class had been highlighted differently than non-field variables
    (inside e.g. functions), the fields had to follow a naming
@@ -3893,8 +3894,8 @@ to illustrate, one can approach the problem simply.
    always in *new* language features: the =m_= convention can easily
    be replaced with the =this.= convention: because the only context
    under which a field can be confused with any other variable is
-   within a memember function, which can typically use =this.=, and
-   have the added benefit of enabling the same infrastructure in the
+   within a member function, which can typically use =this.=, and have
+   the added benefit of enabling the same infrastructure in the
    tooling that checks for misplaced attributes, to check if a field
    had been added to the object. Moreover, I cannot for the love of
    god, create a local variable with a similar name, and confuse
@@ -3910,13 +3911,13 @@ to illustrate, one can approach the problem simply.
    one's life miserable, and other's lives worse than living death.
    Our language, thus needs to be able to address these issues at the
    language parsing level, before they arise. So, we shall adopt the
-   following convetions as syntactic rules.
+   following conventions as syntactic rules.
 
-   1) Datatypes are all capitalised. Similar to Haskell.
+   1) Data-types are all capitalised. Similar to Haskell.
    2) All functions are implicitly curried like in Haskell.
    3) All variable names start with a lowercase letter, and cannot
       begin or end with a number.
-   4) All memeber access and subscripting operations are done with a
+   4) All member access and sub-scripting operations are done with a
       dot between a name of a structured type, and the identification
       of the field. For example, the number of the entry in an ordered
       collection of elements is an identification. A pure function
@@ -3937,17 +3938,17 @@ to illustrate, one can approach the problem simply.
    7) Double quoted strings are literal. Everything inside them except
       for the double quote is rendered exactly as written, including
       newlines, offsets and tabulation. If a literal double quote is
-      needed, it's prudent to use string concatentation:
+      needed, it's prudent to use string concatenation:
       #+begin_example
       "this will contain the word *max* verbatim.
       This will be on a new line." " " "this string will be concatenated to the previous."
       "This string contains a double quoted quotation" '"' "This is the quotation" '".'
       #+end_example
    8) numerical prefixes are implicitly multiplication, while
-      numerical postfixes are implicit subsctipting. If the following
+      numerical post-fixes are implicit subscripting. If the following
       identifier has no operation separating it from the numerical
-      postfix, it's a warning, that can be silenced by making the
-      postfix explicit.
+      post-fix, it's a warning, that can be silenced by making the
+      post-fix explicit.
 
       #+begin_example
       stuff = (1,2,3,4,5)
@@ -3994,26 +3995,26 @@ to illustrate, one can approach the problem simply.
 
    It is uncommon for a description of a language to dwell so long on
    means of classifying data, without introducing a unified means of
-   strucutring it. In Java, the first thing written is a class. In C++
+   structuring it. In Java, the first thing written is a class. In C++
    structures are given before classes, which are given before
    templates, and usually concepts are reserved for the more mature
-   audience. In Haskell, wherein TypeClasses are more of a way of
+   audience. In Haskell, wherein =TypeClasses= are more of a way of
    representing different kinds of data, rather than different data,
-   but still, they are introduced after the algebraic datatypes.
+   but still, they are introduced after the algebraic data-types.
 
    We, however have only superficial knowledge of how to do algebraic
-   datatypes in the language, and have a very slight semblance of what
+   data-types in the language, and have a very slight semblance of what
    a structured datatype is.
 
    The important difference here is the philosophy. We have started by
-   showing that Algebraic datatypes are useful for declaring
+   showing that Algebraic data-types are useful for declaring
    connections between organisations of data. They are useful to
    define recursive objects, such as a Linked List, or a natural
    number. Combined with a way of organising data into ordered
    structures, such as tuples one can do pretty much everything they
    want. One may think that they need not have a record type, for
    indeed to have one, it is enough to have a mapping from integers to
-   names and vice versa, and use the integral subscripts for lookups
+   names and vice versa, and use the integral subscripts for look-ups
    in tuples. The added benefit is that lists can equally well be
    used, and they can be extended indefinitely, albeit later elements
    will require longer access.
@@ -4022,7 +4023,7 @@ to illustrate, one can approach the problem simply.
    developers better, most functional languages add strictures on top,
    and provide record types. In functional languages, rarely if ever
    are you allowed to have function overloading, without first
-   producing a dataclass.
+   producing a data-class.
 
    As we have shown, however, we can define a function to be
    generic. By sacrificing some of the flexibility of the type
@@ -4030,7 +4031,8 @@ to illustrate, one can approach the problem simply.
    upon constraints. We can have an identity function that returns the
    object, whatever the type of the object may have originally been.
 
-   Effectively, what we have created in the language of C++ is a definition of the following manner.
+   Effectively, what we have created in the language of C++ is a
+   definition of the following manner.
 
    #+BEGIN_SRC c++
    template <class T>
@@ -4042,18 +4044,18 @@ to illustrate, one can approach the problem simply.
    scope, and semantically different for the case where we don't want
    the reference to the value to be returned.
 
-   Ingoring this subtlety, the functional puris will object to
+   Ignoring this subtlety, the functional purist will object to
    overloading. It is a bad idea. Almost always, and almost
    universally, ad hoc overloading is not working. The languages that
    enforce this strictly, like Haskell, offer the idea of a datatype
    being possible to overload over, if the datatype is a
-   typeclass. Thus every instance that *is* within the typeclass is
+   type-class. Thus every instance that *is* within the type-class is
    acceptable.
 
-   Our type system permits defining a typeclass as a
+   Our type system permits defining a type-class as a
    constraint. Everything that satisfies the constraints of the
    function, can be accepted as input. But where the Haskell type
-   system allows one to define the typeclass only via the presence of
+   system allows one to define the type-class only via the presence of
    a specific function in the definition and the user has to
    explicitly provide proof that a type is part of a class, our
    constraints have a number of creature comfort advantages.
@@ -4064,14 +4066,14 @@ to illustrate, one can approach the problem simply.
    existence of several functions. If one wants the proof of the
    existence to be explicit, the check can be extended to a proof
    function, that the user of the library will have to supply. The
-   isseus of overlapping constraint resolutions is handled via layers,
+   issues of overlapping constraint resolutions is handled via layers,
    whose precedence is determined by the library writer.  We relax the
    requirement that only a single function can be defined for the same
    type, but instead make the requirement that a single constraint be
    defined only once. If the constraint is contingent on the value, an
    interesting situation may arise. if the value is known at compile
    time, then the check can also be made at compile time. The same is
-   true of the template metaprogramming language of C++, where some
+   true of the template meta-programming language of C++, where some
    conditions can be checked at compile time and one can create a
    source file whose error message is the solution to
    FizzBuzz. However, we provide a simple and understandable syntax,
@@ -4079,12 +4081,12 @@ to illustrate, one can approach the problem simply.
    beings. If however, the check can only be done at run-time, the
    compiler shall be smart enough to include the check at an
    appropriate location. The functions in the code don't have to
-   correpond to the jump locations in the end binary, so the compiler
+   correspond to the jump locations in the end binary, so the compiler
    has the choice between using the conditional internally or
    externally. Depending on the situation, this choice may go either
    way.
 
-   So, we can use Algebraic datatypes. Hooray. But what should we do
+   So, we can use Algebraic data-types. Hooray. But what should we do
    if we have a datatype, whose representation requires the storage of
    too much information? This is where the fun begins, so to speak.
 
@@ -4124,7 +4126,7 @@ to illustrate, one can approach the problem simply.
 
    A good starting point is to recognise that much like we had not
    made a syntactic distinction between built in lists and many other
-   datastructures, a record type is also a generic idea. It is a
+   data-structures, a record type is also a generic idea. It is a
    collection of fields, that are not ordered by number, but by
    name. So, instead of trying to come up with new syntax, we can
    extend the one we already have. Recall that a single equality sign
@@ -4152,7 +4154,7 @@ to illustrate, one can approach the problem simply.
    shadow any values from the outside[fn::speaking of which to avoid
    the issue that plagued Emacs Lisp, scope is lexical. ]
 
-   So we can create freeform records. We obviously cannot modify them
+   So we can create free-form records. We obviously cannot modify them
    yet. Specifically, if you pay attention, the collections
    initialised in such a way, are bindings of values to names. Nothing
    is said of how the value is stored, if it is stored at
@@ -4164,10 +4166,10 @@ to illustrate, one can approach the problem simply.
    that serves one purpose. A familiar pattern when trying to refactor
    code from relying on global scope, to local scope, is that the
    collection of external data needs to be provided in a single
-   datastructure, which is often named context. The issue with this
+   data-structure, which is often named context. The issue with this
    design pattern is that multiple people can have the same need, and
    would most likely collide in naming and in functionality. If the
-   sole purpose of your datastructure is to carry structured pairs as
+   sole purpose of your data-structure is to carry structured pairs as
    if in a dictionary, this approach of a named tuple can be enough.
 
    But suppose that you want to limit the kinds of tuples that you can
@@ -4217,9 +4219,9 @@ to illustrate, one can approach the problem simply.
    dummyRecord a = Record (hello=a, world=a^2, perm=a^3)
    #+end_example
 
-   Now, to avoid issues of non-determinsm and the compiler behaving
+   Now, to avoid issues of non-determinism and the compiler behaving
    arbitrarily, if both of these definitions of =dummyRecord= appear
-   in the codebase, not even necessarily within the same source file,
+   in the code-base, not even necessarily within the same source file,
    the compiler will complain and prompt for action. Only one of them
    can be active at a time. So the user is prompted to deactivate the
    one they like the least.
@@ -4227,7 +4229,7 @@ to illustrate, one can approach the problem simply.
    But of course, there is a different route, using a rewrite rule,
    which we shall explore shortly after.
 
-   Now, knowing that we can make Algebraic datatypes that depend on
+   Now, knowing that we can make Algebraic data-types that depend on
    one another recursively, one can have links between record
    types. Let's show that on a concrete example.
 
@@ -4267,7 +4269,7 @@ to illustrate, one can approach the problem simply.
      Now, did we need to provide the None constructor? Reason
      suggests, that yes, we should have, otherwise how can we
      construct the =parent=? The issue is, however, that we now made
-     the state of having a toplevel subtask representable.  We want
+     the state of having a top-level sub-task represent-able.  We want
      for invalid states of the system to not be possible to represent
      within the language. So with our third attempt we shall try to
      provide a full set of possible states.
@@ -4285,7 +4287,7 @@ to illustrate, one can approach the problem simply.
      where we've used the wildcard to indicate that the value taken is
      irrelevant. It's different to if we used =.infer=, because in
      that case the value would have to be possible to determine from
-     the constratins, and since there's not an inference graph for
+     the constraints, and since there's not an inference graph for
      this type (yet), the value cannot be inferred.  We've also
      re-used the familiar (\*explode\*).
 
@@ -4293,7 +4295,7 @@ to illustrate, one can approach the problem simply.
      yes. Functions are first class citizens of the type (or rather
      kind) system. If we wanted to, we could simply have record fields
      that are functions. Moreover, since the uniform function call
-     syntax allows the fields to be subscripted by name, we recover a
+     syntax allows the fields to be subscript-ed by name, we recover a
      semblance of familiar syntax.
 
      #+begin_example
@@ -4356,7 +4358,7 @@ to illustrate, one can approach the problem simply.
    Well, to put it simply, it may be an interesting avenue to
    explore. It seems like a solution looking for a problem, but
    considering how much time programmers spend writing trivial
-   boilerplate, this may seem like a worthwhile inversment.
+   boilerplate, this may seem like a worthwhile investment.
 
    Let's begin our discussion by talking about the possibility of
    function inference, and how it might work. Consider a function that
@@ -4371,7 +4373,7 @@ to illustrate, one can approach the problem simply.
    regardless of what those constraints are. If for more than a second
    you doubted that any function besides the identity can do this, you
    are incorrect. The best way to see it, is that the value can have a
-   constraint <isEqualTo(value)> which has to be preserved. The only
+   constraint =<isEqualTo(value)>= which has to be preserved. The only
    way that this constraint is lost, is if the address of the thing to
    which it points to has changed, but that would relax the
    constraint, as the thing passed in cannot simultaneously represent
@@ -4385,7 +4387,7 @@ to illustrate, one can approach the problem simply.
    fun :: 'a<isGreaterThan(b)> -> 'a<isGreaterThan(b-1)>
    #+end_example
    Well, you can obviously see the issue. For one, this implies that
-   the type can be ordered, and that (b) is of the same type, and it
+   the type can be ordered, and that =(b)= is of the same type, and it
    can be added, so we already have a lot of implicit
    constraints. These do not help however, because of one simple
    reason. Suppose the function is the identity. It satisfies the
@@ -4439,7 +4441,7 @@ to illustrate, one can approach the problem simply.
     #+begin_example
     <IsGreaterThan(n)> .suggests n+1
     #+end_example
-    The trobuel here, is that the constraint of GreaterThan, extends
+    The trouble here, is that the constraint of GreaterThan, extends
     to floating point numbers, and so while we fixed this answer, we
     have biased the same answer onto the case of floating point
     numbers. To undo this, we could say either
@@ -4483,7 +4485,7 @@ to illustrate, one can approach the problem simply.
     IF even a THEN print('{a}')
     #+end_example
     So what does the compiler do?  First of all, it sees an infer
-    statement, so it looks at the known constratins: so far it's just
+    statement, so it looks at the known constraints: so far it's just
     that it's a positive number. Positive implies GreaterThan(0), so
     that is also a constraint to keep in mind. It then walks down the
     suggestion lists, nothing for positive, but there is a good chance
@@ -4494,7 +4496,7 @@ to illustrate, one can approach the problem simply.
     constraint on a, wasn't satisfied beforehand, and if this had been
     a variable that we input from the user, it would have been a
     compile error. However, we ask the compiler to infer the value, so
-    can we? We constrain it to be even, and backpropagate the
+    can we? We constrain it to be even, and back-propagate the
     changes. This means that the inference has another check, and all
     other constraints are checked for whether or not they conflict
     with even-ness (if they did, this would be a compile error). After
@@ -4506,7 +4508,7 @@ to illustrate, one can approach the problem simply.
     being inferred. The most suitable value is 2. During compilation,
     the user is prompted if they want to replace the =.infer=
     statement, with the value that we've inferred, and the user has
-    the option to never reprompt for it in the future (reversible).
+    the option to never re-prompt for it in the future (reversible).
     This is how the value inference system can save the person from
     having to solve a constrained optimisation problem. Of course, the
     compiler didn't do most of that work either. The benefit here is
@@ -4528,7 +4530,7 @@ to illustrate, one can approach the problem simply.
     #+end_example
 
     Now. The situation here is radically different. =3= is a literal
-    value, representing multiple types. Languages like StandardML
+    value, representing multiple types. Languages like Standard ML
     would require that this literal be only representative of an
     Integer, citing that mathematically, two different types are two
     different types. However, a point that I found exceptionally
@@ -4574,7 +4576,7 @@ to illustrate, one can approach the problem simply.
     a = 3
     print('{a}')
     #+end_example
-    Hm. Same sitaution, except we have an external side effect, hence
+    Hm. Same situation, except we have an external side effect, hence
     we cannot draw much of any conclusions from what this is. We don't
     care about the type, but we do care that in all cases the
     representation is the same, and the representation is the only
@@ -4614,7 +4616,7 @@ python. Here it is in full:
 - Although never is often better than *right* now.
 - If the implementation is hard to explain, it's a bad idea.
 - If the implementation is easy to explain, it may be a good idea.
-- Namespaces are one honking great idea -- let's do more of those!
+- Name-spaces are one honking great idea -- let's do more of those!
 
 In principle, this is a remarkable set of common sense ideas that
 dictate the design of a good language. The trouble here, is that it
@@ -4622,7 +4624,7 @@ has very little in common with modern python, and even less in common
 with the soon to be deprecated version of Python 2.7. For example:
 Beautiful is better than ugly, except the only way for preventing the
 user from accidentally passing a keyword argument to a function
-positionally, involves boxing and unboxing a dictionary. It's fine,
+position-ally, involves boxing and unboxing a dictionary. It's fine,
 but it's ugly. Explicit is better than implicit. Hence why there are
 so many implicit conversions taking place, and the whole type system
 revolves around making the types (which things in Python clearly
@@ -4640,7 +4642,7 @@ get it, or you contradict what you know, then you don't understand the
 concept. The feature needs to go back to the drawing board, perhaps
 abandoned altogether: don't release code that other people wouldn't be
 able to use, because it's too complex and brittle. The main issue
-here, is that the design of an intepreted **only** language is the
+here, is that the design of an interpreted **only** language is the
 last thing that can prevent you from doing that.
 
 So how did it come to this? In my humble opinion, it's the problem of
@@ -4657,7 +4659,7 @@ language needed.
    principles listed here. Most have started programming in Python
    because of the robust infrastructure of poorly designed but
    well-maintained libraries, that allowed for relatively modest
-   programmers to do things that were previosly too difficult to
+   programmers to do things that were previously too difficult to
    express. Python is easy to get into: the compiler isn't a compiler,
    so you don't have to deal with cryptic messages like you do in C++
    or Java. You spend less time producing noise, than actually coding,
@@ -4665,7 +4667,7 @@ language needed.
    Java. Moreover, you have the right amount of righteously exquisite
    syntactic sugar in Python, that lets you be exceptionally
    productive, rack massive amounts of technical debt and be bombarded
-   by Github issues, that you will ignore. Notice that at no point
+   by GitHub issues, that you will ignore. Notice that at no point
    have I complained about Python's performance. It doesn't and
    shouldn't matter, but what does, is the fact that some design
    patterns are too simple to express, obfuscating the inner problems,
@@ -4681,11 +4683,11 @@ language needed.
    hike to explain what a public, static and void function even is:
    you have to know that everything in Java has access restriction,
    dictated by the severity of the word. After all of that you need to
-   dig into the namespace of system.out.println("hello world"),
+   dig into the namespace of =system.out.println("hello world")=,
    invariable be puzzled as to why it doesn't compile, and understand
    that you have to put a semicolon at the end of every statement. You
-   understand why that is a design decition only when you see how the
-   compiler is made, see the mess that both unix and DOS have left,
+   understand why that is a design decision only when you see how the
+   compiler is made, see the mess that both UNIX and DOS have left,
    and understand that this isn't necessary for the language, it's
    just easier to write a compiler for; something that no good
    language should have.
@@ -4695,10 +4697,10 @@ language needed.
    not conceptually overwhelming the user is remarkable, and something
    that Python should have. In fact, I can forgive it for not
    packaging print into a namespace as the final step of the Zen would
-   suggest, because namespaces are a solution to a problem, if you
+   suggest, because name-spaces are a solution to a problem, if you
    don't have the symptoms of said problem, you don't need it. In
    fact, because you have no need to remember if dict was in
-   Python.utils or Python.awt.utils or otherwise, you have, at the
+   =Python.utils= or =Python.awt.utils= or otherwise, you have, at the
    basic level the "preferably one obvious way" to do stuff. If you
    wanted collections, you have them built into the language, and
    these collections, as a matter of utmost importance, conform to our
@@ -4718,8 +4720,8 @@ language needed.
    not only could you not create an array of variable length, when
    programs clearly need to be able to do that, but also, that the
    number needs to be known beforehand. Starting from a language where
-   all of these internal rough endges are gone is much more appealing,
-   and is conducive to understaing of the process of programming.
+   all of these internal rough edges are gone is much more appealing,
+   and is conducive to understanding of the process of programming.
 
    But Python has more. It has no curly braces, which are not given
    any significant explanation early on, until you learn about
@@ -4763,7 +4765,7 @@ language needed.
    have. Moreover, the flagrant buoyancy of complicated concepts in
    Haskell, is still a thing: I cannot let my children forever live in
    the prelude environment, so I will eventually need to teach them
-   about monads, which look like an overcomplicated version of
+   about Monads, which look like an over-complicated version of
    imperative programming. A language that supports this from day one
    is better. So Python is comfortable. So is Julia, (and it shares
    many of the issues of Python). Competing with these languages is
@@ -4772,11 +4774,11 @@ language needed.
    change over from where you are to that, you need more than a 5%
    improvement. Not to mention that Python's fluid perception of what
    should and shouldn't be part of the core language, allows for those
-   ``killer features'' to be backported into Python.
+   ``killer features'' to be back-ported into Python.
 
 ** The Ugly side of convenient.
 
-   McDonalds is the cheapest form of fast food. If you think about the
+   McDonald's is the cheapest form of fast food. If you think about the
    rationale of why most people eat it, there's a simple answer: the
    food looks appealing, it's cheap, accessible, reliable and above
    all, predictable. Python has most of these features. So knowing
@@ -4809,7 +4811,7 @@ language needed.
    today. Intelligent design succumbs to evolution if you allow both
    to coexist, and survival of a language is dictated by the number of
    projects that use it. I'm locked into Python because I have
-   matplotlib, and no other library can generate plots. I'm locked
+   =matplotlib=, and no other library can generate plots. I'm locked
    into python because almost all of the code is written in
    Python. Most of my public works are written in Python, because the
    circles in which I am use that to the exclusion of everything
@@ -4817,7 +4819,7 @@ language needed.
    compelling-enough reason, and in academic or scientific
    computation, the only such reason can be performance, which
    amortised for the complexity of the tools, the abundance of
-   computiational resources and the general preciousness of the
+   computational resources and the general preciousness of the
    programming time over the run-time of the application, means that
    Python and its ilk are doomed to succeed.
 
@@ -4841,7 +4843,7 @@ language needed.
      - If they need to dig through documentation it's our fault.
      - If they need to take time to refactor it to conform to what the
        language needs, then we've turned them into an inefficient part
-       of the toolchain.
+       of the tool-chain.
      - If they need to take time to write boilerplate, it's our fault.
      - If they need to fiddle with third party tools to make writing
        code easier, we wasted our time.
@@ -4870,7 +4872,7 @@ language needed.
      - If the type and error checking takes time, and has nothing to
        do with solving the problem, then you've asked your programmer
        to do a captcha, and threw away the result.
-     - If you've allowed for erroneous states to be representable,
+     - If you've allowed for erroneous states to be represent-able,
        then you have wasted all of the time taken to find this
        mistake.
 
@@ -4921,11 +4923,11 @@ language needed.
    #+end_example
    So far nothing out of the ordinary: the curly braces signal that
    the objects can be reordered, and the colon is rarely used in our
-   language, as we use the Haskell/fortran-like =::= to indicate
+   language, as we use the Haskell/FORTRAN-like =::= to indicate
    =type\_of=. But there is a problem. The obvious one, is that the
    language specification deliberately disallows underscores as part
    of the name, but that's hardly an issue in Python, since the values
-   could be interpreted as lookups within a three element ordered
+   could be interpreted as look-ups within a three element ordered
    structure =key= and =value=. However, the less obvious one comes in
    when we consider passing this structure as a list of function
    parameters.
@@ -4955,7 +4957,7 @@ language needed.
   enforced by a syntactic and semantic difference: even the semicolons
   terminating expressions with side-effects are meaningful, they
   indicate the return value is not to be preserved. So the convention
-  for type identifiers and value identifiers are both CamelCase. Why?
+  for type identifiers and value identifiers are both =CamelCase=. Why?
   you can quote me on that this is a highly subjective, aesthetic and
   opinionated decision. So much so, that I don't want for my
   programmers to revert to a different convention out of habit: if you
@@ -4996,9 +4998,9 @@ language needed.
   }
   #+end_example
   except, whenever one copies design elements from Python they have to
-  be judicious not to copy the mistakes. Ok, but then what do you do
-  if the string contains a space. Strings can differ in whitespace
-  only, but we are using whitespace as a terminator for
+  be judicious not to copy the mistakes. OK, but then what do you do
+  if the string contains a space. Strings can differ in white-space
+  only, but we are using white-space as a terminator for
   identifiers. So should the actual lookup syntax should be
   #+begin_example
   hello_"world "
@@ -5019,14 +5021,14 @@ language needed.
   mentioned previously, the =*.world= part is a representation of
   calling the function =world= which has the first argument
   =hello=. World /is/ a symbol technically, but whenever you see a
-  dot, you are sure that there must be a funciton named after what
+  dot, you are sure that there must be a function named after what
   follows the dot. However, that is related to the /type/ and not the
-  /value/ of an associative structure. Creating the lookups might not
+  /value/ of an associative structure. Creating the look-ups might not
   map neatly onto a function, hence the subtle but important
   difference in invocation.
 
   We also get an additional bonus: the symbol names have to be
-  acceptable as identifiers, so you can be sure that whitespace won't
+  acceptable as identifiers, so you can be sure that white-space won't
   make a difference. If you pass in a capital case identifier, its
   value can only be a type, so this would allow for type arithmetic to
   be performed using associative structures, which might be very
@@ -5062,7 +5064,7 @@ language needed.
   one-in-one-out type of affairs. We allow for structures to be passed
   in either anonymously: by specifying an (dis)ordered collection of
   the arguments, which will be bound to the names implicitly, or a
-  named datastructure, provided it passes the duck-typing. Keyword
+  named data-structure, provided it passes the duck-typing. Keyword
   arguments do not fit well into this.
 
   We do not want the choice of implementation style to affect the
@@ -5087,7 +5089,7 @@ language needed.
   is unambiguous and only accepts one type of argument. We do not want
   for this function to accept a =FunnyPair(Int, Int)=.
 
-  However, the reason why Python has the *args **kwargs as acceptable
+  However, the reason why Python has the =*args= =**kwargs= as acceptable
   inputs to a function is borne out of the observation that the entire
   function call syntax is just a wrapper around the fact that one can
   specify the function invocation as either an ordered or disordered,
@@ -5106,16 +5108,16 @@ language needed.
   automatically constrained to be an ordered collection, so that the
   application of =applyArgs id {1,2,3}= would result in a constraint
   resolution (compile-time) error, because the slicing syntax that has
-  > in the name implies the presence of ordering. Another subtle point
+  =>= in the name implies the presence of ordering. Another subtle point
   is that we do not have an explicit base case, for an empty
   collection. We can do that, because we have adopted a similar syntax
-  for a =unit=, i.e. an empty collection (), and an empty
+  for a =unit=, i.e. an empty collection =()=, and an empty
   list/array/structure. Any function that has no inputs, is to be
   eagerly evaluated, when it sees =()=, so this version not only
   applies but also evaluates all of the functions.
 
   However, here we also see why the same methodology cannot be applied
-  to dis-ordered **kwargs style invocations: the reason why currying
+  to dis-ordered =**kwargs= style invocations: the reason why currying
   works is because all such functions are in fact functions of a
   single argument that accept one input and produce a single
   output. The illusion of multi-parameter functions comes into play
@@ -5152,9 +5154,9 @@ language needed.
   method of defining module-public functions, that shall have all of
   their parameters declared with a name and a documentation
   string. When such a function is defined, what actually happens is
-  that the cartesian product of all intermediate currying schemes that
+  that the Cartesian product of all intermediate currying schemes that
   can result in function evaluation are being bound to the same name,
-  so that one can use a covnenient syntax to bind and curry any
+  so that one can use a convenient syntax to bind and curry any
   parameter directly at any stage of evaluation. Which gives us
   something that looks like this:
 
@@ -5190,12 +5192,12 @@ language needed.
   #+end_example
 
   The under-the-hood implementation is that every permutation of the
-  function parameters is being bound to the same name. When ambigous,
+  function parameters is being bound to the same name. When ambiguous,
   the order of the parameter definition takes precedence, however
   other patterns of binding are possible. In fact, the type of partial
   binding is the opposite of what we would expect. Now one might
-  object that the generation of O(n!) functions for each public
-  function is too much. To them I say that O(n) parameters should have
+  object that the generation of \(O(n!)\) functions for each public
+  function is too much. To them I say that \(O(n)\) parameters should have
   been structured better. Moreover, as the symbols are a permissible
   datatype for the language, there's not a single reason preventing
   you from simply requiring a single associative collection as input.
@@ -5203,7 +5205,7 @@ language needed.
   The benefit of this approach is that the default values for some
   parameters are also handled by the appropriate partial binding. The
   only trouble is that one needs to specify the type of binding
-  beforehand using the keyword .defaults; so you would have something
+  beforehand using the keyword =.defaults=; so you would have something
   of the sort of
   #+begin_example
   atan2 2.0 .defaults
@@ -5235,7 +5237,7 @@ language needed.
   happens to share the last name.  Haskell is not a top-chart language
   unlike Python, and unlike Python it deserves to be one. Similar to
   the aforementioned workhorse of Data-science it has syntactically
-  meaningful whitespace, an interpreter, and a particularly
+  meaningful white-space, an interpreter, and a particularly
   easy-to-use prelude. This is the exhaustive list of major
   similarities. Otherwise, the two languages couldn't be more
   dissimilar. So Haskell is a worthwhile orthogonal language to orient
@@ -5284,13 +5286,13 @@ language needed.
   where new values can be created, are within functions. New values
   can only be created, but you cannot re-bind to the same name, this
   is sometimes phrased as immutability, but I think that this obscures
-  the conceptual intent; why is haskell a purely functional language,
+  the conceptual intent; why is Haskell a purely functional language,
   rather than an immutability-oriented programming language?
 
   The important similarities between our fledgling language and
   Haskell are many. But there is a crucial difference.
 
-** The Genius of monads.
+** The Genius of Monads.
 
    The unfortunate issue with Haskell and many other functional-like
    languages is that one cannot quite agree on what side-effects
@@ -5307,9 +5309,9 @@ language needed.
    Moreover, it cannot cause any mutation of any state. This is not
    strictly necessary on its own, but it is a logical conclusion of a
    few compromises that will have to be made. If you want a language
-   that operates on complex datastructures using functions, you can
-   either require that the datastructures, however non-trivial are to
-   be fully copied each invocation, or that the datastructures cannot
+   that operates on complex data-structures using functions, you can
+   either require that the data-structures, however non-trivial are to
+   be fully copied each invocation, or that the data-structures cannot
    be mutated after being accessed by a function.
 
    That last part has far reaching consequences: the biggest and best
@@ -5318,14 +5320,14 @@ language needed.
    to do what many call the Von-Neumann type of programming, where we
    model our machine as a finite collection of boxes where one can put
    and take things out of. Unfortunately this also means that arrays
-   are no longer the most practical datastructure. You not only cannot
+   are no longer the most practical data-structure. You not only cannot
    dynamically adjust their size after instantiation, but you can only
    create one if you know the exact values of each cell. This doesn't,
    thankfully mean that the compiler cannot make use of efficiently
-   packed datastructures such as arrays, just that exposing them to
+   packed data-structures such as arrays, just that exposing them to
    the programmer is no longer a good idea. Hence why your MLs and
    Haskells and Lisps expose a default implementation of a linked
-   list, despite this particular datastructure being outclassed by
+   list, despite this particular data-structure being outclassed by
    arrays in every case where the access is to a collection of
    elements, and not a particular pattern of linking as in e.g. a
    Fibonacci heap.
@@ -5343,7 +5345,7 @@ language needed.
    As a result, languages are either not-strictly functional, or
    strictly not-functional. Almost everything that we'd want a useful
    program to do is going to involve one form of side-effect or
-   another. StandardML as an example of a not-strictly functional
+   another. Standard ML as an example of a not-strictly functional
    family throws in the towel and states "Well, we had to resort to
    imperative at some point, let's introduce the assignment and
    dereference operators". Indeed the operators are not allowed to mix
@@ -5367,7 +5369,7 @@ language needed.
 
    Notice, however, that we have omitted Haskell. It fits neither
    category, because it is a language that has features of both and
-   weaknessess of neither family. The workaround is known as the
+   weaknesses of neither family. The workaround is known as the
    *monad*, the single most important concept in Type theory. All one
    needs is an Algebraic Datatype system, and one can build into the
    compiler a method of controlling the kinds of side-effects that one
@@ -5382,8 +5384,8 @@ language needed.
 
    As I've mentioned previously, we cannot eliminate side-effects, but
    that is not sufficient justification to let them roam free within a
-   codebase. What monads do, is they recruit the typing system to help
-   control the propagation of side-effects. In a StandardML codebase
+   code-base. What Monads do, is they recruit the typing system to help
+   control the propagation of side-effects. In a Standard ML code-base
    it is impossible to know how many functions are pure based on
    signature alone. In Haskell, you know that =main= is an impure,
    state-ful side-effect permitting function because you know that it
@@ -5391,7 +5393,7 @@ language needed.
    function is itself impure, hence the programmer is acutely aware of
    the propagation of side-effects.
 
-   But monads do come with problems of their own: there is no
+   But Monads do come with problems of their own: there is no
    consensus currently on how to safely control the propagation of
    top-level mutable state. The whole point of the language design was
    to make this impossible so it is no surprise that it is difficult
@@ -5424,10 +5426,10 @@ language needed.
    immediate user of the library that provided the function to you,
    but suppose you are a middle-man.
 
-   In Haskell, StandardML and Rust, the standard way is to wrap the
+   In Haskell, Standard ML and Rust, the standard way is to wrap the
    answer in an optional type, and simply return =Nothing=, if the
    divisor =b= is zero. This is certainly possible and acceptable in
-   our language, as it only takes the presence of algebraic datatypes
+   our language, as it only takes the presence of algebraic data-types
    to do, however, constraints offer a better solution.
 
    #+begin_example
@@ -5436,7 +5438,7 @@ language needed.
    #+end_example
    This is a standard pattern to be adopted within the language. First
    of all, note that because of the dependently typed language, we can
-   indeed have overloads that have Ints but of different values. The
+   indeed have overloads that have =Ints= but of different values. The
    compiler will replace the resolution of the function with a
    run-time conditional, and either follow one branch or the
    other. However, the usage of our function =div= becomes a delight:
@@ -5456,7 +5458,7 @@ language needed.
    Secondly, whenever a panic takes place, we have the option of
    receiving differing levels of information. The nominal way that
    Python and Java have elected is to provide the full call
-   traceback. The programmer will see the file and the line of code
+   trace-back. The programmer will see the file and the line of code
    from where the error message was thrown, but not know the
    circumstances under which this has taken place. More importantly,
    it will not know which combination of inputs raised the exception,
@@ -5499,7 +5501,7 @@ language needed.
    function has produced, if any. Sometimes, even a failed calculation
    is recoverable, to an extent, and while it is not a great idea to
    rely on this pattern for all intents and purposes, it is well
-   acceptable in some ranks. So if the matrix diagonalisation function
+   acceptable in some ranks. So if the matrix diagonal-isation function
    found that the matrix is singular, the third argument can contain
    the singular value decomposition, or a lambda that when evaluated
    amounts to the SVD, as it stands to reason that this expensive
@@ -5550,7 +5552,7 @@ language needed.
    if there is an overload that includes an Int where p is, that will
    be the branch that will be boxed into x, however, it stands to
    reason that not many functions will have .Error as input type. This
-   will result in an unhandled code branch, which in case of errors
+   will result in an un-handled code branch, which in case of errors
    has the helpful message
    =Overload resolution failed. No error handler bound to power :: Int -> .Error(DivideByZero) -> *. Use a choice operator=.
 
@@ -5597,7 +5599,7 @@ language needed.
    bit of cancer.
 
    As we've mentioned, the workloads in which different kinds of
-   monads have to be inter-mixed are not particularly well-suited to
+   Monads have to be inter-mixed are not particularly well-suited to
    fast, iterative production of code.
 
    Haskell has a lot to make it appealing in the long-term
@@ -5605,7 +5607,7 @@ language needed.
    and hence predicting bugs is easier. It is remarkably terse, in
    that even for very complicated projects, one can keep the
    complexity down to a few files and pages of code, with very high
-   signal-to-noise ratios. Software is composable, in that when
+   signal-to-noise ratios. Software is compos-able, in that when
    writing a large project, chances are you could strip out and
    publish most of your maintenance code and someone else might find
    it useful. Because most of the advances are purely theoretical, it
@@ -5623,8 +5625,8 @@ language needed.
    not at the top? For starters, it doesn't offer an immediate and
    obvious improvement; in order to make use of the terseness, one
    first has to migrate to Haskell. Another issue, is that one cannot
-   gradually wean the codebase away from mutable state; if one doesn't
-   have lots of constexpr statements in C++, I doubt that simply
+   gradually wean the code-base away from mutable state; if one doesn't
+   have lots of =constexpr= statements in C++, I doubt that simply
    migrating it to Haskell, would make adding those statements any
    easier. And unlike the migration to the Unix-conforming shells,
    there isn't a convenient tool that lets you move a project that
@@ -5647,7 +5649,7 @@ language needed.
    for rules about tabs vs. spaces, about aligning and restructuring
    the text file of the program, to be more readable. What is worse,
    these rules are merely suggestions, and valid code that compiles
-   can all fit on a single line with no whitespace. Moreover, sweeping
+   can all fit on a single line with no white-space. Moreover, sweeping
    changes such as refactoring the name of a function can break the
    entire program, while changes to the documentation that do not
    correspond to the reality can rarely be caught. There's need for
@@ -5669,31 +5671,31 @@ language needed.
    from the actual optimised source code, and as such, simple
    refactoring such as renaming is trivialised. Also, multiple
    representations of the same program may coexist within the same
-   codebase, to represent different approaches one may take to
+   code-base, to represent different approaches one may take to
    formatting, whilst keeping such politics out of the internals of
    the language compiler.
 
    Another idea we shall half-borrow is that the library should
    persistently include snapshots of different incompatible
-   states. Instead of making the entire codebase immutable and
+   states. Instead of making the entire code-base immutable and
    persistent as is the case with version control in Unison, we shall
-   allow the codebase to be mutated, but keep the original
-   states. Every modification to the codebase has to have a specific
+   allow the code-base to be mutated, but keep the original
+   states. Every modification to the code-base has to have a specific
    purpose, it could be a refactor, a bug-fix and an optimisation, but
    mixing many of them isn't usually a good idea. So instead of
    allowing the users to modify the code and then retroactively commit
-   the state of the codebase into version control, the programmer
+   the state of the code-base into version control, the programmer
    requests the permissions needed to do a specific modification and
    only facilities necessary to make that specific optimisation are
    provided.
 
    If one for example is optimising a database, it stands to reason
    that functions will not be merely renamed, but their behaviour must
-   be fundamentally changed. In the oprimisation mode, it is prudent
+   be fundamentally changed. In the optimisation mode, it is prudent
    not to allow the programmer to commit a refactor that changes the
    name of a function, but to allow the change of the behaviour to
    take place. As a result, one does not have to rely on the good will
-   of the programmers in question to rememeber to retroactively commit
+   of the programmers in question to remember to retroactively commit
    only the necessary changes, or to bunch together modifications that
    are not necessarily linked. You know, rigidly, that only an
    optimisation must preserve the public API of the library, and this
@@ -5709,10 +5711,10 @@ language needed.
    constraints. Non-public functions are allowed to be modified to an
    extent, but if the constraint propagation results in a different
    set before and after a refactor, then this is hardly a
-   refactor. Restructuring a codebase, however, can create a change of
-   the public API, and this means that only in cases where a library
-   has had a change that is flagged as a restructure, do we actually
-   need to review the behaviour of our programs.
+   refactor. Restructuring a code-base, however, can create a change
+   of the public API, and this means that only in cases where a
+   library has had a change that is flagged as a restructure, do we
+   actually need to review the behaviour of our programs.
 
    A parallel to version control systems is not at all
    accidental. Barely anyone ever forgets to do conflict resolution
@@ -5766,7 +5768,7 @@ language needed.
    about the need to include deeper clones as needed, but not
    globally.
 
-   The benefits of not distributing text files, but keeeping in an
+   The benefits of not distributing text files, but keeping in and
    integrated version-controlled AST are not limited to stability and
    maintainability. Today, most optimisations are completely opaque to
    the programmer, as the kinds of constraints that lead to certain
@@ -5786,13 +5788,13 @@ language needed.
    be extracted and suggested for distribution as a development
    library, that can be plugged into other programmers workload.
 
-   For example, let's say that we have a codebase that has a sorting
+   For example, let's say that we have a code-base that has a sorting
    function that uses a temporary object for swapping two
    objects. Suppose that we have said that we were going to optimise
    the program, by adding a specialised sorting function that uses
    binary exclusive or to swap two integral types. Ordinarily for that
    optimisation to be available to other uses of our language, someone
-   like myself should spend the time implenenting this explicitly in
+   like myself should spend the time implementing this explicitly in
    the compiler's optimiser. It's laborious to do so in every
    conceivable instance, but the information on what needs to change
    is readily available. In our design, the programmer has clearly
@@ -5815,13 +5817,13 @@ language needed.
    little work to do: a parser tool handles the syntax validation and
    translates the textual representation that is made available to the
    programmer back into the AST, but the translation is carried out
-   each time the codebase is modified. Because the language tools
+   each time the code-base is modified. Because the language tools
    don't rely on humans breaking the project down into behaviourally
    isolated object files, but rather does so based upon the concrete
-   implementations committed to the codebase, the linking can be done
+   implementations committed to the code-base, the linking can be done
    in an eager fashion. The compilations should be relatively fast,
    which allows, combined with the opt-out distribution of the source
-   code with the libraries, allows one to adjust the codebase to
+   code with the libraries, allows one to adjust the code-base to
    static linking or break a static object into multiple shared
    objects based on external criteria. Things that ought to be
    separate can be separated out, and functionality present in any
@@ -5832,14 +5834,14 @@ language needed.
    another program, your source code's representation shall contain
    proper credit to the author of the program that you use as library.
 
-   We have also converged upon a version of the unix philosophy that
+   We have also converged upon a version of the UNIX philosophy that
    does not rely on the presence of crude tools such as command
-   shells, e.g. fish, bash and zsh. Instead, if you know of a program
+   shells, e.g. fish, bash and =zsh=. Instead, if you know of a program
    that can has a function that plays sound files, you can use the
    exact implementation of that function directly from your source
    code, provided both programs were written in our language. So
    instead of the command-line interface being the only enforceable
-   lingua france, every user facing facility must be documented in
+   /lingua franca/, every user facing facility must be documented in
    source, and can be presented as source code documentation. So, you
    could for example use an implementation of an audio player's DSP in
    your own player, without having to run that program in full.
@@ -5849,7 +5851,7 @@ language needed.
    expose all of their functions to the public, it is possible to
    reach unimaginable heights of complexity. Unlike emacs lisp, our
    language is to be compiled to an efficient abstract representation,
-   requiring no interpretation at all, if no behaviour changning
+   requiring no interpretation at all, if no behaviour changing
    modifications are to be made. As a result, the entire collection of
    all the programs written in our language becomes a repository of
    functions and behaviours.
@@ -5866,9 +5868,9 @@ language needed.
 
    C++ has a much more subtle distinction in that all the types are
    stored as bytes, and it is taught to perform some operations
-   bitwise, but because inline assembly and overriding of basic
+   bit-wise, but because inline assembly and overriding of basic
    operations like =+= or copy assignment is a thing, we can
-   effectively construct algebraic datatypes that are in many
+   effectively construct algebraic data-types that are in many
    indistinguishable from primitives of a different structure. Our
    language, despite the syntactic similarities to functional
    languages, is much closer in spirit to C++.
@@ -5892,7 +5894,7 @@ language needed.
    going to let slide. In this, we can still allow implicit
    unambiguous conversions, provided that the output can implicitly be
    estimated. But the output is not always an =Int=, even if it is a
-   32-bit integral type. What if it's not a two's completement? What
+   32-bit integral type. What if it's not a two's complement? What
    if it is unsigned.
 
    The constraint system ensures that the signed-ness and
@@ -5903,21 +5905,21 @@ language needed.
    name, rather than a torrent of constraints.
 
    So effectively, the primitive's names similarly to the algebraic
-   datatype's labels, are a collection of implicit constraints that
+   data-type's labels, are a collection of implicit constraints that
    are carried by the compiler wherever it needs to interpret any
    data: so why not, as we have done previously expose the mechanism
    to the user?
 
    I do not encourage lots of primitives to be defined this way. There
    is a reason why I believe in not adding a built in list
-   implenentation, but rather to infer whether something is a
+   implementation, but rather to infer whether something is a
    heterogeneous list, or a homogeneous fixed array or a structure, at
    compile time. I want the compiler to be able to make a few
    decisions on behalf of the mountain of experience that we have
    accrued over the century of programming. We know which
-   datastructures are good in which cases, and while we can't tell
+   data-structures are good in which cases, and while we can't tell
    everyone on stackoverflow that they should be using arrays and not
-   lists, we can make it so that concrete datatypes are set based on
+   lists, we can make it so that concrete data-types are set based on
    the usage, rather than by asking the programmer to guess correctly
    in the first instance.
 
@@ -5949,14 +5951,14 @@ language needed.
    (unlike std::numerical_limits), we can and do obtain a much clearer
    system.
 
-   Constrast this with the standard definition of a boolean:
+   Contrast this with the standard definition of a boolean:
    #+begin_example
    .data Bool = True | False
    #+end_example
    here, it is merely an algebraic enumeration. We know what needs to
    be represented conceptually, but unlike many low-level programming
    languages e.g. C++ or java, we have no semblance of the need to
-   actually keep this value in a representable form.
+   actually keep this value in a represent-able form.
 
 ** Constraint oriented typing for optimisations
 
@@ -5965,7 +5967,7 @@ language needed.
    =int= is always four bytes, that a ===bool= is always four bytes,
    because it has to be addressable, and that a =char= is a single
    byte, because evidently you can address individual bytes for
-   characters but can't address individual bytes for booleans. This is
+   characters but can't address individual bytes for Booleans. This is
    rather confusing, and was an artefact of my teachers not quite
    being computer scientists, but people who just learned how to solve
    problems with =Microsoft Visual Studio=.
@@ -5973,7 +5975,7 @@ language needed.
    What I have found, though, is that in practice, even in less
    optimised C++ code, most if not all of the data that you allocate,
    will be optimised away. Local variables within functions,
-   especially booleans can be done away with by implying the avenue
+   especially Booleans can be done away with by implying the avenue
    taken by the compiler. Disparate branches of an if, with copies of
    branch less code works just as well as boolean and checks, and
    sometimes far better, in case of loop unrolling. The trouble is,
@@ -6002,7 +6004,7 @@ language needed.
    Even so, this relies on the ability of the programmer to attain
    information outside the source code of the standard library to
    understand the code that is laid out, so providing a model that
-   does not have any pretense of doing one thing only and then doing
+   does not have any pretence of doing one thing only and then doing
    something else is a detriment to our ability to reason about
    code. And reasoning is what we do most of the time, we don't write
    everything from the ground up, we reason about snippets of code
@@ -6013,14 +6015,14 @@ language needed.
    The biggest issue I can see in this, is that it is assumed that the
    programmer's specification and what the program actually does are
    one and the same. But the trouble is, because most of the
-   oprimisations are done on a very low level, the programmer can look
+   optimisations are done on a very low level, the programmer can look
    at two identical programs, one having a more intelligible but less
    efficient spec, i.e. source code with recursive function calls and
    the other with a =for= loop and say, the latter one is faster,
    despite both essentially doing the same thing, possibly unrolling
    the loop altogether.
 
-   The trouble with llvm and gcc is that the programmer can only use
+   The trouble with LLVM and GCC is that the programmer can only use
    trial and error to guess when each optimisation shall be
    triggered. I cannot program relying on the tail call optimisation
    to kick in, because I have to look up a forum post that states
@@ -6039,21 +6041,21 @@ language needed.
    want for the programmer to know what kinds of changes to the
    algorithm the program will undergo, so that they don't spend the
    next week adding an optimisation that is already there, but
-   hardcoded into the specification of what the program must do,
+   hard-coded into the specification of what the program must do,
    adding nothing to the performance, but making the source code far
    less intelligible. I purport that if the programmer could
    explicitly state the optimisation conditions, and apply them
    automatically, they can both keep the more understandable
-   mathematical definition of a fibonacci sequence as a recursive
+   mathematical definition of a Fibonacci sequence as a recursive
    definition, but also allow it to be replaced with a more efficient,
    but less mathematical imperative. As we've talked in the previous
    sections, we also want for these constraint oriented optimisations
-   to be made available to the public, and be re-useable. So when
+   to be made available to the public, and be re-usable. So when
    someone else writes a recursive sequence, that has the next number
    depend on the three previous numbers, the compiler simply says
    "hey, I noticed that your function here is following a common
-   pattern with a fibonacci sequence. This guy found that if you can
-   set constraints <A>, <B> and <C>, that you can make this an
+   pattern with a Fibonacci sequence. This guy found that if you can
+   set constraints =<A>=, =<B>= and =<C>=, that you can make this an
    iterative function that computes in no time. I will try to
    automatically see if I can do that, but I might not, so you might
    want to consider how you can constrain the data, or if you can do
@@ -6092,7 +6094,7 @@ language needed.
    away too.
 
    How about, we do things differently. We've already established,
-   that the source code contains the AST of the codebase, segmented
+   that the source code contains the AST of the code-base, segmented
    into independent modules, and textual names, constructs and
    bindings attached to the AST called the Human interface
    representation. So as in the example, we want to change the name of
@@ -6104,7 +6106,7 @@ language needed.
    for that function. LSP will do something less efficient, and
    probably touch every file where a syntactic unit of that name,
    i.e. a symbol is present. Similar to LSP, the editor would probably
-   not need to reparse the entire file to get up to date syntax
+   not need to re-parse the entire file to get up to date syntax
    highlighting, only one function name changed, and the LSP is aware
    that the highlighting doesn't need to. However, in our language, we
    have one more benefit: the change is non-destructive, and the
@@ -6139,17 +6141,17 @@ language needed.
    extra parameter, and does what we want, and we only use the old
    function as a wrapper for the behaviour. Then, we hit save, and the
    modifications are committed to the AST and the HIR, however, they
-   are not finalised and the codebase is not in a final state. The
+   are not finalised and the code-base is not in a final state. The
    compiler must first try and see if there are errors beyond
    syntactic ones, e.g. did we break any of the previous contracts
-   with our new implenentation. Then, when we know that the code
+   with our new implementation. Then, when we know that the code
    works, we will be shown a list of possible optimisations: tail call
    optimisation, for instance. We shall apply those manually. Finally,
    we shall have a commit message, which is the final thing we must
    do. Except, now that we have a syntax aware version control system,
    the compiler already has a suggested message "optimised
-   reverseAppend: added subfuntion, optimised via tail call (HASH of
-   the tail-call-optimisaion)". You can edit this, but it's the end of
+   =reverseAppend=: added sub-function, optimised via tail call (HASH of
+   the tail-call-optimisation)". You can edit this, but it's the end of
    the day, and the commit message is quite accurate.
 
    Afterwards, you get another prompt: make optimisation public?
@@ -6166,16 +6168,16 @@ language needed.
    Next time, when you boot your compiler, it flags that your
    optimisation has a bug. It says that user =DarthVader609= has found
    that the optimised function produces different behaviour to the
-   unoptimised one. You then, can rever the optimisation in your
-   codebase. You say =revert optimised reverseAppend=, and publish the
+   un-optimised one. You then, can reverse the optimisation in your
+   code-base. You say =revert optimised reverseAppend=, and publish the
    optimisation as buggy, citing the original discoverer:
-   =DarthVader609=. You refactor the codebase: do =rename
+   =DarthVader609=. You refactor the code-base: do =rename
    veryBadFunctionName -> iWasTiredOk=, and then, you are given a flag
    that the tail-call optimisation was to blame for the regression. A
    few moments later, you find a =bugFix revApp: forgot to check the
    base case.= and the option to roll back in both the changes that
    you made yesterday, and the optimisation that caused the
-   regression. You opt not to apply the hotfix to the tail call
+   regression. You opt not to apply the hot-fix to the tail call
    optimisation but keep the helper function with two parameters. You
    then find that =DarthVader609= has their own version of tail call
    optimisation that you decide to try. As a result, your function
@@ -6209,15 +6211,15 @@ language needed.
    in scope and spirit to the feature recently patched into C++,
    called concepts. An algebraic type system can also be made to work,
    one only needs to look at the parsers for open source compilers for
-   StandardML or Haskell, to see that it is not itself a complicated
+   Standard ML or Haskell, to see that it is not itself a complicated
    ordeal.
 
    The issue is that the intermediate representation that Haskell made
-   use of, SystemF was built to support a functional language first,
+   use of, =SystemF= was built to support a functional language first,
    and expects the optimisations to be done, as is tradition before
    producing a linked and compiled binary, but not at all in a form
    that can be exposed to the programmer. We cannot similarly
-   transpile to C, or use existing infrastructures like LLVM, because
+   trans-pile to C, or use existing infrastructures like LLVM, because
    we would then concede to the traditional form of opaque
    optimisations that are eliding the source code completely.
 
@@ -6225,7 +6227,7 @@ language needed.
    convention, because programming by convention is the one thing that
    we're trying to avoid. Moreover, while it is true that today almost
    everyone has a C compiler, that might no longer be the case several
-   years from now; it might so happen that zig takes over the world,
+   years from now; it might so happen that Zig takes over the world,
    or that java-like byte-code distribution becomes standard. So, we
    must have a mechanism to transform the language that we have in the
    high level into a language that can be optimised at the low level.
@@ -6342,8 +6344,8 @@ language needed.
 
 
    it is crude, and uninspired, and the executable is screaming at you
-   that it is compiled via the glasgow Haskell compiler, and that it
-   has a complex runtime associated to it that haskell needs to link
+   that it is compiled via the Glasgow Haskell compiler, and that it
+   has a complex runtime associated to it that Haskell needs to link
    against. This output is something that is far too cluttered for a
    complex language on =-O1=, but this is the produce of =ghc= on
    =-O3=.
@@ -6439,7 +6441,7 @@ language needed.
              ret
    #+END_SRC
    Here, not only can we tell that the program is very optimal, but we
-   can see that the value of square 2 had been inlined, and
+   can see that the value of square 2 had been in-lined, and
    printed. If C had a facility to produce the optimisations
    efficiently at the source code level, the actual program to which
    this corresponds to would look like the following:
@@ -6505,7 +6507,7 @@ language needed.
    output. They do not, on the hardware level really have any kind of
    distinction between registers. The only languages that are honest
    about this ground truth are the ones where the distinction between
-   ins and outs, e.g. Fortran:
+   ins and outs, e.g. FORTRAN:
    #+BEGIN_SRC fortran
      function func(i) result(j)
        integer, intent(in) :: i ! input
@@ -6521,14 +6523,14 @@ language needed.
 
    One may notice that Haskell isn't the sole language where the
    double colon is used to designate types. Indeed, we shall be
-   borrowing heavily from Fortran, as it is in many ways a much more
-   suitable baseline of comparison for highly performant code. It
+   borrowing heavily from FORTRAN, as it is in many ways a much more
+   suitable baseline of comparison for highly perform-ant code. It
    definitely lacks in some facilities needed for systems programming,
    but those are things that one can go around using other features of
    our language.
 
    With all of that in mind, we have to note that the usage of the
-   subroutines is also borrowed from Fortran: we do not apply
+   subroutines is also borrowed from FORTRAN: we do not apply
    arguments to them, but rather we =CALL= them.
 
    #+begin_example
@@ -6559,7 +6561,7 @@ language needed.
    assembly. That's the =.asm= language intrinsic. We want a place
    where we could apply some of our language sensibilities, but also
    interface with assembly, and we don't want the assembly conventions
-   to seep out into the codebase. Thus, the best solution ends up
+   to seep out into the code-base. Thus, the best solution ends up
    being a custom construct, for each supported type of assembly. It
    is straightforward to write the =CALL= construct, assuming a much
    uglier version of it in the form of a procedure, also exists, but
@@ -6572,12 +6574,12 @@ language needed.
 
    A fair and accurate question can be raised, is =square= necessarily
    a function? We've worked hard to preserve the distinction
-   notationally in what the procedure can alter and what is to remain
+   notation-ally in what the procedure can alter and what is to remain
    untouched, and any odd assembly chunk might have leaky state, and
    therefore square might not be. Here the best we can really do is to
    say that the system will have to do a bit of checking of the
    assembly on our behalf to make sure that the function really is a
-   function. There are ways of doing that efficiently: the subrotine
+   function. There are ways of doing that efficiently: the subroutine
    is free to modify the registers, as they are transient anyway; load
    and store information into memory, as long as segmentation is
    respected. It might be a good idea to not let subroutines access
@@ -6588,7 +6590,7 @@ language needed.
    even if temporary, binding it to a variable name is not too much to
    ask.
 
-** Malloc and Free
+** =malloc= and =free=
 
    So while up until now, most of our information was stack-based, we
    can now allocate on the heap. We can now write the assembly
@@ -6606,25 +6608,25 @@ language needed.
    constraint on the pointer: left as an exercise.
 
    We can thus have a subroutine that allocates =Int= s, =Double= s,
-   and even non-primitive objects, such as C structs. We already have
-   a mechanism for allocating algebraic datatypes, right? Why would we
+   and even non-primitive objects, such as C =structs=. We already have
+   a mechanism for allocating algebraic data-types, right? Why would we
    want this?
 
    Suppose that you had an API, that provided semantically the same
    thing as one of our objects of algebraic record type, but in the
-   form of a C struct. You can now write a binding module that allowed
-   our language sensibilities to apply to that struct, and even
+   form of a C =struct=. You can now write a binding module that allowed
+   our language sensibilities to apply to that =struct=, and even
    determine the name of the corresponding type, according to some
    rules. But there's another, deeper need for this. While we have
    talked about how our structures must behave, it was assumed that
-   the exaact type of back-end datastructure is magic. The high level
-   optimiser can look at our usage of a datastructure, and say that it
+   the exact type of back-end data-structure is magic. The high level
+   optimiser can look at our usage of a data-structure, and say that it
    doesn't need to exist in full, or that it doesn't have to be one
-   datastructure, but several arrays with a common size and
+   data-structure, but several arrays with a common size and
    index. However, at some point we will need to instantiate a version
    of a complex structure, and we don't want for that to be opaque,
    thus we need to provide a language-intrinsic low-level version of
-   struct allocation. We can do that on the stack, simply by
+   =struct= allocation. We can do that on the stack, simply by
    pretending that the several adjacent memory locations are one
    object, and by reading from or writing to them. But even then,
    eventually we will run out of stack space, and will be forced to
@@ -6640,10 +6642,10 @@ language needed.
 
    Because we talk assembly, our language has the unfortunate
    consequence of being manually memory managed! Did we just create
-   Fortran but with extra steps, and mildly less annoying syntax?
+   FORTRAN but with extra steps, and mildly less annoying syntax?
    Moreover, how can we claim that the compiler knows best what type
-   of datastructure to use, when it can't even manage them without our
-   help. Ok, fine, it can be trusted to call =malloc= upon binding, so
+   of data-structure to use, when it can't even manage them without our
+   help. OK, fine, it can be trusted to call =malloc= upon binding, so
    we can at least avoid null dereferencing.
 
    But how can we free memory? Will the compiler ever be able to do
@@ -6672,7 +6674,7 @@ language needed.
    of that, to replicate the behaviours of highly complex systems, one
    has to come up with complex and potentially infinite
    abstractions. A list in Haskell can contain an infinite amount of
-   elements and in one fell swoop one can define fibonacci
+   elements and in one fell swoop one can define Fibonacci
    sequence. For that kind of expressive power to work, the programmer
    must relinquish all semblance of control over where the value is
    being held. One cannot have heap allocated or stack allocated
@@ -6701,7 +6703,7 @@ language needed.
    race condition.
 
    Both approaches are valid, and provided one has access to the
-   language, can build datastructures that support this to a small
+   language, can build data-structures that support this to a small
    extent. We can have reference counted pointers in C++, which will
    be garbage collected. We do provide a mechanism to do that as
    intelligently as we do in Rust, except while in C++ it is possible
@@ -6728,7 +6730,7 @@ language needed.
     symbols of the enclosing scope.
 
     This gives rise to a few well-known and debatably useful feature
-    of modern programming languages: shadowing, and an inarguably
+    of modern programming languages: shadowing, and an unarguably
     useful feature too: scoping.
 
     #+BEGIN_SRC python
@@ -6807,7 +6809,7 @@ language needed.
        childTwo a;
        'b.bindings_c.count == 2;
        'b.bindings_c[:<actual>].count == 1;
-       'b.bindgins_c[:<actual>]_0.val == a*a;
+       'b.bindings_c[:<actual>]_0.val == a*a;
        'b.bindings_c_1.val == a*a;
 
        childTwo :: Int -> Int :: a = (
@@ -6831,8 +6833,8 @@ language needed.
     childTwo corresponds to the second child in the binding tree.
 
     The only other thing we haven't covered yet, is that within
-    multiline definitions, it is prudent to delineate the end of a
-    function, with a full stop, or to parenthesise the entire ecnlosed
+    multi-line definitions, it is prudent to delineate the end of a
+    function, with a full stop, or to parenthesise the entire enclosed
     function. Similar to python, we do allow enclosed definitions of
     objects including functions. Unlike Python, if we do that, we do
     not rely solely on the indentation to communicate where one
@@ -6878,7 +6880,7 @@ language needed.
     guaranteed to have the same constraints, and the same value (which
     follows from the constraints, really). The consequence of this, is
     that one can test a single value once, and the constraints can
-    magically apply to the alias half a codebase away. This sounds
+    magically apply to the alias half a code-base away. This sounds
     like exactly the kind of thing that functional programming would
     want to avoid, however, I trust that most programmers can wrap
     their head around the fact that if you call the same person two
@@ -6933,7 +6935,7 @@ language needed.
     # TODO solve that exercise myself.
 
     But knowing that we have a constraint, that tells us if something
-    is after malloc but before free, how do we use that to make the
+    is after =malloc= but before free, how do we use that to make the
     thing free automatically upon exiting scope. Let's consider a
     concrete example. Suppose that we have the function that
     dereferences an integer pointer.
@@ -7013,7 +7015,7 @@ language needed.
     The issue now is, that we can have a mixture of manual and
     automatic memory management. As a result if the pointer is used
     only once in a free clause, it is still considered scoped, but is
-    not used any more. So we can modify the constraint to exlucde
+    not used any more. So we can modify the constraint to exclude
     that. Except in this instance, the architecture we have cannot be
     re-used. We would, thus need to do some work and repeat ourselves
     a little, to make sure that the semantics are preserved.
@@ -7042,7 +7044,7 @@ language needed.
                             \free\ );
           a.
     #+end_example
-    Now, however, whenver we use the deref, procedure, the subsequent
+    Now, however, whenever we use the deref, procedure, the subsequent
     free become a double free, but if we were careful, we wrote the
     free procedure in such a way, that it doesn't compile if the
     pointer is out of scope, i.e. we get a double free. So if we
@@ -7052,7 +7054,7 @@ language needed.
 
 *** Migration and motivation
 
-    So what we have just done, is effecitvely reinvent the scoped
+    So what we have just done, is effectively reinvent the scoped
     pointer that people are already using in C++. Why would we do
     that?
 
@@ -7062,7 +7064,7 @@ language needed.
     done? In a way, you have the C code using the C++ compiler, but
     you are using exactly none of the C++ features, there are no
     objects, just structures that are manually allocated and
-    deallocated. Your functions accept pointers, not references,
+    de-allocated. Your functions accept pointers, not references,
     speaking of which, your code-base is riddled with raw pointers,
     and casting is done in the worst possible way for C++.
 
@@ -7071,13 +7073,13 @@ language needed.
     Haskell. You'd have to worry about the fact that Lists are not
     random access, and most of your mutable code, while remaining
     within Monadic bubbles, would still be imperative code with
-    mutable state. The amount of work needed to port the codebase of
+    mutable state. The amount of work needed to port the code-base of
     Doom to idiomatic Haskell would be highly non-trivial.
 
     So, what the constraint system allows us to do, is to shift the
     paradigms of our language gradually. There is always the risk of
     moving too fast, or too slow, where you either end up with too
-    much modifications to the codebase, or a language that has some of
+    much modifications to the code-base, or a language that has some of
     the features that only work thanks to some constraints that
     haven't been set yet.
 
@@ -7087,14 +7089,14 @@ language needed.
     constraint: all variables that are allocated within one scoped,
     and never referenced outside that scope are scoped pointers. This
     constraint can on its own highlight the pointers that can easily
-    be turned to scoped ones. So you can query the codebase, much like
+    be turned to scoped ones. So you can query the code-base, much like
     with grep, but based on the fact that some pointers cannot be made
     scoped. The manual intervention is needed, if you want to move
     to automatic memory management.
 
     The crux of the improvement over e.g. C and C++, is that the
     process can largely be automated. You have a library of
-    constraints that one needs to apply iteratively to a codebase to
+    constraints that one needs to apply iterative-ly to a code-base to
     move from manual to automatic smart-pointer oriented memory
     management. The move from smart pointers to an even more
     hands-free experience can also be made.
@@ -7107,10 +7109,10 @@ language needed.
     ourselves, just like we built smart pointers. We can in principle,
     re-create the borrow checker, based on its outward behaviour.
 
-    Last, but not least, if you build the constraints of the nim
-    values into your codebase, you can verbatim copy the algorithm of
-    the nim's excellent garbage collector. In cases where you would
-    have to re-architect the codebase, the language itself will tell
+    Last, but not least, if you build the constraints of the =nim=
+    values into your code-base, you can verbatim copy the algorithm of
+    the =nim='s excellent garbage collector. In cases where you would
+    have to re-architect the code-base, the language itself will tell
     you what's wrong, and hint at how you need to re-structure.
 
 ** TODO On mutability by other means.
@@ -7123,14 +7125,14 @@ language needed.
    =.constrain= is only meant as a means to speed up the compilation,
    not the run-time, and hence such keywords are to be omitted from
    production software. All other constraint semantics are effectively
-   value-dependent typeclasses, and even share a similarity with C++'s
-   equivalent of typeclasses: templates.
+   value-dependent type-classes, and even share a similarity with C++'s
+   equivalent of type-classes: templates.
 
    So based on the similarities to the Haskell family of languages, we
-   can indeed reach the conclusion that the monadic encapsulation of
+   can indeed reach the conclusion that the Monadic encapsulation of
    side-effects is possible. However, we would inherit all of the
    drawbacks of such a system. What we want to do instead, is to have
-   a language-level and singular interface to non-monadic
+   a language-level and singular interface to non-Monadic
    encapsulation. In other words, we want to make it impractical for
    people to hand-roll an IO monad, and instead use the language's
    built-in features.
@@ -7158,7 +7160,7 @@ language needed.
 
    So if one wants to have mutability, the presence of mechanisms to
    =.relax= and =.constrain= must be present. As soon as functions
-   containing these keywords enter the codebase, all functions that
+   containing these keywords enter the code-base, all functions that
    depend on them are no longer functions in the ordinary sense, they
    are procedures. =assign= is a procedure, and the lack of
    function-ness is made explicit in the signature:
@@ -7170,13 +7172,13 @@ language needed.
    Note that the signature is not simply that of the function, but has
    an idempotent side-effect arrow: =->>=. This is a very very subtle
    point: in the eyes of a functional programmer, every function that
-   has a side effect is impure. A monadic functional programmer would
+   has a side effect is impure. A Monadic functional programmer would
    say that this a particular side-effect that can be wrapped in a
-   monadic type, but anyone else will realise that:
+   Monadic type, but anyone else will realise that:
    - the effect of assign is dependent only the inputs.
    - The only external global state is that of the AST, hence the
      re-use of the symbol is a side-effect,
-   - The external state is modified idempotently, i.e. no matter how
+   - The external state is modified idem-potently, i.e. no matter how
      many times in a row we apply the assign procedure, the global
      state will be left in the same state if the inputs were the same.
 
@@ -7184,22 +7186,22 @@ language needed.
    them with just one, provided the input parameters are exactly the
    same. However, it is a much trickier question if the same can be
    said if there is other potentially side-effect prone code in
-   between assignments. These cannot be optimised with referrential
+   between assignments. These cannot be optimised with referential
    transparency, at least not in the general case. For a truly
    functional language that would be a serious issue, but not in our
    language, we never pretended to be purely functional.
 
-   But suppose that we only had one assignment. The monadic approach
+   But suppose that we only had one assignment. The Monadic approach
    to functional programming tells us that one does not have to give
    up functionally pure behaviour of the entire program, just because
    we have *one* assignment procedure. Instead, every function that
-   depends on such a value ceases to be referentially transparent, and
+   depends on such a value ceases to be referential-ly transparent, and
    only if used in a very specific context. One can unpack the value
    from the monad, and perform the operations as usual, preserving the
    functional purity everywhere except in the act of unpacking.
 
-   While we can simply use monads in our language directly, (as we
-   have algebraic datatypes, it is a matter of patching the support as
+   While we can simply use Monads in our language directly, (as we
+   have algebraic data-types, it is a matter of patching the support as
    an optimisation), we can also replicate the behaviour in the
    constraint system. After the assignment, the symbol no longer has
    the <value> constraint, and most functions will no longer accept
@@ -7239,7 +7241,7 @@ language needed.
 ** Version control
 
    Like we said previously, we want for the optimisations to appear
-   within the codebase verbatim. So in the case of
+   within the code-base verbatim. So in the case of
    #+begin_example
    square :: Int -> Int
    square a =
@@ -7331,7 +7333,7 @@ main:
    specification of what the program is. Sure all of its outward
    effects are that it prints 4, and exits. We want the optimiser to
    squeeze as much complexity out of this, but we don't necessarily
-   want for the programmers to see the decompiled source, but rather
+   want for the programmers to see the de-compiled source, but rather
    the original specification of the problem and the optimisation.
 
    So in this case, we want to apply the optimisation that gets rid of
@@ -7346,7 +7348,7 @@ main:
    #+end_example
    What this means, is that we want to make the first optimisation
    part of the official source code. So the programmer, if they wanted
-   to view the entire codebase (of two functions), could do
+   to view the entire code-base (of two functions), could do
    #+begin_example
    :view spec
    #+end_example
@@ -7367,7 +7369,7 @@ main:
    #+end_example
    you would get a step 3.1. And if you did that again starting from
    3, you would get 3.1.1, and so on. All the branches of all
-   optimisations are preserved in a persistent datastructure. All of
+   optimisations are preserved in a persistent data-structure. All of
    your optimisations can lead to the same AST state, eventually. The
    compiler is kind enough to find those for you, and then you would
    get optimisation 3.22/22. Fun! You could refer to that state of the AST as either
@@ -7392,7 +7394,7 @@ main:
    where you had =Arguments= in =main=. The names for symbols that you
    might have used also get purged, as well as any unused constructs.
 
-   That information is not lost, just separated from the codebase, and
+   That information is not lost, just separated from the code-base, and
    archived. We can do more fine grained trimming:
    #+begin_example
    :trim opt after 2
@@ -7417,7 +7419,7 @@ main:
 ** Optimisation process in detail.
 
    We have a rough idea of how the high-level optimiser works: it
-   iterates on the entire codebase, and does obvious things. But what
+   iterates on the entire code-base, and does obvious things. But what
    can be done depends on the context. For example, lets look at
    #+begin_example
    findAnswerToAll :: .infer
@@ -7461,7 +7463,7 @@ main:
    negligible side effects being fairly manageable. But while our
    language is not built around the functional paradigm, as you have
    probably noticed it can support this style really well, so if the
-   user wants to move away from the VonNeumann imperative, they can
+   user wants to move away from the Von Neumann imperative, they can
    be pointed at what needs changing.
 
    But how does the compiler know to optimise the other way around?
@@ -7487,7 +7489,7 @@ main:
 
    Now suppose, that we're talking about sorting functions. We know
    that to sort a large collection in a stable fashion one can use
-   mergesort. That is after all close to the proper limit of how
+   merge-sort. That is after all close to the proper limit of how
    efficient an algorithm could be: \(O(n \lg n)\). This can be
    written easily as a function:
 
@@ -7518,8 +7520,8 @@ main:
    happens to the types in the next section, for now, assume that the
    specification is correct.
 
-   We know that mergesort isn't the best sorting algorithm. It's
-   fast, and better than bubblesort, but has huge space requirements,
+   We know that merge-sort isn't the best sorting algorithm. It's
+   fast, and better than bubble-sort, but has huge space requirements,
    that on some architectures, would lead to a large constant factor
    in the time complexity. Tony Hoare, whom I've had the honour of
    meeting, has come up with a remarkable solution to this problem.
@@ -7534,7 +7536,7 @@ main:
    sort () = ()
    #+end_example
    Here we have made use of a couple of tricky things, especially if
-   you come from Haskell or StandardML. In those languages, an empty
+   you come from Haskell or Standard ML. In those languages, an empty
    list, a list with a single element and a collection with more than
    one element all have the same type. In our case they do not. A unit
    can represent an empty element in every collection that defines
@@ -7572,17 +7574,17 @@ main:
 
    #+begin_example
    checksorted :: Collection<OfType(<Comparable>)>
-   checkSorted a =
-       IF a.len <= 1 || a_0 < (checkSorted a_[1:len])_0
+   checksorted a =
+       IF a.len <= 1 || a_0 < (checksorted a_[1:len])_0
 
    <Sorted> checksorted(a*)
    #+end_example
-   This check is expensive, so we want a way to track the sortedness
+   This check is expensive, so we want a way to track the sorted-ness
    without checking for it explicitly every time.
    #+begin_example
    a::<Sorted> .implies a_[b*::<GreaterThan(0):c*<LessThan(len)>]::<Sorted>
    #+end_example
-   Which is intuitive, so we can make a slice, and a subarray of a
+   Which is intuitive, so we can make a slice, and a sub-array of a
    sorted array is going to be flagged as sorted. The trouble is, for
    that to work, we need to establish that the bigger array was
    sorted. It is not a trivial task in general, but knowing that we
@@ -7597,10 +7599,10 @@ main:
    checkMergeAbleSorted a b =
        IF a_[-1] < b_0
 
-   <_> => checkMergeableSorted a b .implies (a +++ b)::<Sorted>
+   <_> => checkMergeAbleSorted a b .implies (a +++ b)::<Sorted>
    #+end_example
 
-   we no longer have to constrain the mergeSort to produce sorted
+   we no longer have to constrain the merge-Sort to produce sorted
    arrays. The result will automatically track this constraint. The
    added bonus is that if we merge the elements in the wrong order,
    the output constraint would be unsatisfied, and the incorrect
@@ -7616,7 +7618,7 @@ main:
    uncertainty.
 
    Consider how you would make a rigorous decision in the comparable
-   situation. Suppose that the mergesort takes exactly \(T = A * n *
+   situation. Suppose that the merge-sort takes exactly \(T = A * n *
    \lg n\) where \(n\) is the length of the array. The =quickSort= is
    taking a different amount of time for each configuration, but for
    simplicity's sake, let's assume it takes \(T = B*n*\lg n\) for
@@ -7625,7 +7627,7 @@ main:
    later). Suppose then that we can expect the real data for which
    the program is tuned to be percentage \(C\) of sorted data. So the
    best algorithm is the one that gives the best average case
-   performance: in fact is the quicksort if and only if
+   performance: in fact is the quick-sort if and only if
    \begin{equation}
    B (C n + (1-C) \lg n) \leq A (\lg n)
    \end{equation}
@@ -7642,8 +7644,8 @@ main:
    where for tune to be an available form if optimisation, one has to
    have both functions defined.
 
-   The first step involves benchmarking the functions on classes of
-   representative data, which will be made part of the codebase.
+   The first step involves bench-marking the functions on classes of
+   representative data, which will be made part of the code-base.
 
    #+begin_example
    .benchmark 'short = (
@@ -7720,7 +7722,7 @@ main:
    names. Fortunately, as we have the sources laid out conveniently,
    and the optimisation is of a /particular/ kind, we can change the
    names of the functions. This should not break the rest of the
-   codebase, because post
+   code-base, because post
    #+begin_example
    :commit
    #+end_example
@@ -7793,7 +7795,7 @@ main:
 
    Most of our training however can come in handy. We know that
    e.g. =quicksort= is at worst quadratic, so we can try and fit the
-   parametric benchmarking with a very good first hypothesis of the
+   parametric bench-marking with a very good first hypothesis of the
    worst-case performance. This with a few points of contact will
    allow one to use something like e.g. nested sampling to see how
    well the data can be extrapolated, without actually going to
@@ -7815,7 +7817,7 @@ main:
 
    Running parametric benchmark.
    Please specify how to treat the parameters (default: tune).
-   > seed: decorrelate,
+   > seed: de-correlate,
    > quantity: tune,
 
    Please specify the parameters derived from a test case.
@@ -7904,7 +7906,7 @@ main:
    if at the time of inference, the two were allowed to mix? Probably
    that =quicksort= is better for such datasets than it really is.
 
-   Now consider what would =mergesort= do? If it is given a priori
+   Now consider what would =mergesort= do? If it is given /a priori/
    knowledge, that the two halves of the array are pre-sorted, it
    does one recursive step and merges the two halves. But we can't
    with the guided profiling be able to identify this sort of
@@ -7924,12 +7926,12 @@ main:
    #+end_example
 
    Notice that we are using a new-ish language feature:
-   namespaces. First, why do we need it here? Well, because the
+   name-spaces. First, why do we need it here? Well, because the
    context of guided optimisation made it obvious that the =sorted=
    actually means =benchmarks/sorted= in all previous cases. You
-   should be surprised to know that once the codebase's state is
+   should be surprised to know that once the code-base's state is
    committed, the instances of =sorted= shall be replaced with their
-   properly namespaced counterparts.
+   properly name-spaced counterparts.
 
    Unlike most languages, e.g. Python, Haskell we don't use
    dots. Uniform function call syntax makes the dot mean "use this as
@@ -7939,25 +7941,24 @@ main:
    either. To them I say, the first argument is the canvas of the
    language. ]. We are not going to parrot every feature of accepted
    languages just because they are standard. Moreover, I always found
-   that looking at namespaces in the same way as one would for
+   that looking at name-spaces in the same way as one would for
    directories allows for some neat tricks. But we shall touch upon
    this far later.
 
-   For now, we see that the constraint setting, averted a
-   catastrophe: =mergesort= is used, but not =quicksort=. But as the
-   initiated reader can see, we leave a lot of performance on the
-   table: what would happen is a potentially \(O(7 \lg 7)\) recursive
-   ladder that needs to collapse back to a single
-   collection. However, if we were clever, we would say that
-   =mergesort list = list= iff =list::<Sorted>=. A single primitive
-   (i.e. non-collection value) is =Sorted= according to how we
-   defined the constraint, which recovers the base case and extends
-   it to a vast class of optimisations. For example, we could
-   optimise the scope of the function where we =mergesort= the
-   =list=. This is a good introduction for what comes next, because
-   it shows a principle that we'll need to implement high-level tail
-   call optimisation. We can ask the compiler to specifically inline
-   one iteration of a recursive function.
+   For now, we see that the constraint setting, averted a catastrophe:
+   =mergesort= is used, but not =quicksort=. But as the initiated
+   reader can see, we leave a lot of performance on the table: what
+   would happen is a potentially \(O(7 \lg 7)\) recursive ladder that
+   needs to collapse back to a single collection. However, if we were
+   clever, we would say that =mergesort list = list= if and only if
+   =list::<Sorted>=. A single primitive (i.e. non-collection value) is
+   =Sorted= according to how we defined the constraint, which recovers
+   the base case and extends it to a vast class of optimisations. For
+   example, we could optimise the scope of the function where we
+   =mergesort= the =list=. This is a good introduction for what comes
+   next, because it shows a principle that we'll need to implement
+   high-level tail call optimisation. We can ask the compiler to
+   specifically inline one iteration of a recursive function.
    #+begin_example
    :opt inline 'sort
    #+end_example
@@ -7997,19 +7998,19 @@ main:
    that it was defined inside =mergesort=.
 
    Of course, using this at optimisation, with that information
-   available is fine. The use of namespaces and scoping is not
+   available is fine. The use of name-spaces and scoping is not
    something that computers or compilers require, but rather
    something we invented as a common courtesy to fellow
-   developers. The namespaces were invented for the same reason.
+   developers. The name-spaces were invented for the same reason.
    However, if someone is utterly convinced that the behaviour must
    be made part of the program specification (despite the better part
-   of Fortran, C and many other major languages' experience telling
+   of FORTRAN, C and many other major languages' experience telling
    us otherwise), we are making it so that the strategies that one
    could employ to bodge the answer, are readily available.
 
    In this particular case, it is better to keep things as they are,
    and not allow anything beyond the optimiser, make use of the exact
-   structure of the codebase. However, if something changes and this
+   structure of the code-base. However, if something changes and this
    particular part of the AST needs to be re-optimised, we might have
    to make the manual intervention more than once. So making this
    code part of the spec isn't such a terrible idea either (just
@@ -8033,7 +8034,7 @@ main:
    a collection of name and construct bindings, that when applied to
    the AST can generate something that you as a programmer are
    familiar with: a text file. The types of modifications that you can
-   do to that text file, can be re-parsed and trasnformed into an AST
+   do to that text file, can be re-parsed and transformed into an AST
    transformation, that is then being recorded non-destructively, and
    applied whenever you request the newest version spec.  It is, in
    the end, a collection of hashes and a table of symbols, both of
@@ -8106,7 +8107,7 @@ main:
       criteria, typically, if you want maximum performance, the same
       value can be represented with multiple variables, each of which
       is processed by an optimum subroutine.
-   6) All of the inline assembly is inlined.
+   6) All of the inline assembly is in-lined.
    This step is called /type solidification/ or /crystallisation/. By
    contrast in Haskell, saying something is an =Int=, means that it is
    an =Int=, if the architecture supports it. It can be done away
@@ -8121,15 +8122,15 @@ main:
    greater than one in every case it is used. I can technically get
    away with an unsigned short. "
 
-   So instead of storing types and structs and classes, we instead
+   So instead of storing types and =structs= and classes, we instead
    store constraints. Having the constraints with their definitions,
    with the usage of values abiding by those constraints, shall permit
-   us to generate the types and structs and classes. Each constraint
+   us to generate the types and =structs= and classes. Each constraint
    is given a unique ID, such that only if you are using two identical
    constraints, can you reliably say that you did. A constraint ca be
    packaged with the source code as a declaration, or a definition, so
    you don't have to embed a large library in order to be able to use
-   it in several codebases.
+   it in several code-bases.
 
    What else is in the source file? As we've already discussed, there
    are two representations of the source code, the specification and
@@ -8141,7 +8142,7 @@ main:
    source.  So when you want to produce a program, we take either the
    spec or the render and produce assembly.
 
-* Utilitas, Firmitas, Venustas
+* /Utilitas, Firmitas, Venustas/
 
   Part of the reason why Clang and LLVM are such popular choices for
   fledgling languages, is the layered and intelligible structure of
@@ -8150,7 +8151,7 @@ main:
   It is easy to write a compiler for a new language, because if you
   can represent it in the LLVM language, or an intermediate
   representation you can, in effect, produce a compiler. Indeed, one
-  of the ways our language can be implemtned at a very early stage
+  of the ways our language can be implemented at a very early stage
   is to have LLVM-capable subroutines rather than inline assembly,
   as we have previously shown. In the end, we'd like to be able to
   do both, and simply switch between one and the other. The reason
@@ -8206,15 +8207,15 @@ main:
 
   Parsing the human readable text can be very easy, or exceptionally
   difficult. The original high level programming languages, like
-  Fortran or Algol, have mostly included features that would have
+  FORTRAN or Algol, have mostly included features that would have
   made parsing the text exceptionally easy. As a result, the
   compilation didn't take long, and the resulting code is very easy
   to optimise and translate to machine instructions. The trouble is,
   it take much longer to solve an abstract problem in said
-  languages. Fortran was tailored to solving mathematical and
+  languages. FORTRAN was tailored to solving mathematical and
   Physics-related problems, with profound applications in sciences,
   but not particularly useful for systems programming. Just try to
-  write device drivers in Fortran, and see what I mean.
+  write device drivers in FORTRAN, and see what I mean.
 
   The issue with creating a language is a balancing act of creating
   something that can be turned into efficient machine code, is
@@ -8239,7 +8240,7 @@ main:
 
   Finally, and historically the first thing that our fathers and
   grandfathers developed, was a very crude intermediary between
-  machine code and something that can be intepreted by humans, but
+  machine code and something that can be interpreted by humans, but
   operates fully on the basis of how a transistor would. So one can
   look at the assembly, and tell immediately, what's going on under
   the hood.
@@ -8275,8 +8276,8 @@ main:
   out of the equation and the one that is the most maintainable or
   has other intangible qualities that you might want to encourage --
   wins. By lifting the optimisations into the standard, we allow
-  people everywhere across the world to make use of auditable
-  optimisations, with compilers sufficiently simple to be auditable
+  people everywhere across the world to make use of audit-able
+  optimisations, with compilers sufficiently simple to be audit-able
   themselves, without much penalty.
 
   That final point needs some elaboration. We shall assume that one
@@ -8338,9 +8339,9 @@ main:
    compile for reasons other than optimisations, or at least not of
    temporal characteristics of their programs. There is however a
    significant penalty in the temporal sense, to trying to compile all
-   your software. Certain low-level languages such as C and Fortran
+   your software. Certain low-level languages such as C and FORTRAN
    have become increasingly scarce. On the other hand
-   difficult-to-compile languages such as C++, or Hasekll, are
+   difficult-to-compile languages such as C++, or Haskell, are
    becoming more and more common. The time it takes to compile a
    certain utility has become increasingly less tenable, to the point
    where compiling your own compiler, and your own kernel are daunting
@@ -8353,13 +8354,13 @@ main:
    Another bit far less important consideration is that of size on the
    hardware storage. Solid-state devices have a limited number of
    write cycles they can endure without failure. As a result, people
-   are far more conscious of pulling in the entire github repository
+   are far more conscious of pulling in the entire GitHub repository
    for GCC, even though this is what security mandates. People are
-   however far less conscious of the fact that the propreitary
+   however far less conscious of the fact that the proprietary
    distribution models that don't permit alternate means of
    installation, and general apathy towards common standards of
    software resource management can lead to multiple orders of
-   magnitude more wear than the several megabytes that the github
+   magnitude more wear than the several megabytes that the GitHub
    repository would have pulled in. Proper usage of =USE flags= have
    saved me a considerable amount of wear on my system, as well as
    allowed me to make due with a measly 8Gb of system memory. And for
@@ -8381,7 +8382,7 @@ main:
    interface. Suppose that you're a minimalist, and he didn't want any
    pesky printer support, eating up our valuable screen real estate,
    and coming up in command-line searches. We can patch it out. But we
-   have to recompile the entire codebase to achieve that: mainly
+   have to recompile the entire code-base to achieve that: mainly
    because you want to have a default keybinding for printing, and a
    GUI button and then some core function that takes the memory buffer
    and turns that into postscript. And languages like C++ won't even
@@ -8391,9 +8392,9 @@ main:
    of the program, more of the documentation, but if I shipped you a
    program that was a blank slate, without even the function to call
    other functions, you'd be very unhappy. But if you think about it,
-   you have to come up withA sophisticated set of patches that achieve
+   you have to come up with a sophisticated set of patches that achieve
    the effect of USE flags. You can't elide the process of re-parsing
-   the compiled objects, because re-linking to the proper objexct is
+   the compiled objects, because re-linking to the proper object is
    something that humans do by hand and usually poorly.
 
    The trouble here is that when humans write code, they modularise
@@ -8408,7 +8409,7 @@ main:
    place, rather than near the definition of the macro that is used to
    define the keybindings, or even the functions that these
    keybindings call. So if I wanted to recompile =dwm= without support
-   for calling subprocesses, but still able to receive general purpose
+   for calling sub-processes, but still able to receive general purpose
    keybindings for controlling its internal state, I would not be able
    to just tell the compiler not to link against one object that it
    already compiled. Instead I'd need to define a macro. Macros are
@@ -8422,8 +8423,8 @@ main:
    software follows a set and quite particular pattern of
    operation. Be it a daemon or a single fire utility, what we
    normally see is a program that has a pre-set structure. It can be
-   publisehd as a binary, or it can be published as source code, or it
-   could be an interpreted program that nontheless does something
+   published as a binary, or it can be published as source code, or it
+   could be an interpreted program that nonetheless does something
    incredibly useful and can only be done in an interpreted
    fashion. We do however have a procedural view of programming: when
    we want to create a directory, we call a procedural program
@@ -8434,7 +8435,7 @@ main:
    just for errors. It can have side effects, and unfortunately, as
    someone who may have attempted to clean up their home directory on
    a Linux machine, to make it XDG specification compliant, pollute
-   the filesystem. While it was fine in the age of "don't run software
+   the file-system. While it was fine in the age of "don't run software
    that you don't understand the source code, of", in the age of
    enormous desktop environments, and a complete disregard for
    application security, such a gaping hole is to be filled.
@@ -8455,7 +8456,7 @@ main:
    standards lead to these rules being taken per faith, rather than as
    a solid warrant. Moreover, there are some implicit assumptions that
    are implementation rather than standard dependent: Windows/DOS
-   programs use the front slash to delineate short option names, unix
+   programs use the front slash to delineate short option names, UNIX
    uses a dash, but not always. It is assumed that arguments given
    with a single dash are short and that arguments with more than one
    are long, but not always, there might not always be a space in
@@ -8506,7 +8507,7 @@ main:
 
 *** Parameters
 
-    First, we have a program that computes the n-th Fibonacci
+    First, we have a program that computes the n-Th Fibonacci
     number. It makes no sense to run this program without the ordinal,
     hence the number =n= is a parameter. It has an integral type so
     it's safe to assume that it's an =Int=.
@@ -8518,7 +8519,7 @@ main:
     #+end_example
 
     Then we want to produce a program that can also optionally take a
-    pair of fibonacci numbers and produce everything in between the
+    pair of Fibonacci numbers and produce everything in between the
     upper and the lower bound.
     #+begin_example
     main :: Parameter(Int, 'twoNumbers) -> Parameter(Int, 'twoNumbers') -> Int
@@ -8542,7 +8543,7 @@ main:
     The symbols must be bound to the following structure:
     #+begin_example
       singleNumber = (
-        "description" : "Compute the {'n}-th Fibonacci number",
+        "description" : "Compute the {'n}-Th Fibonacci number",
         'n : "The ordinal of the Fibonacci numbers" :: Int<NonNegative>
       )
     #+end_example
@@ -8560,7 +8561,7 @@ main:
     #+begin_example
       twoNumbers = (
           "Description" : "specify the {'lower} and the {'upper}
-                 between which to generate fibonacci numbers",
+                 between which to generate Fibonacci numbers",
           'lower : "non-inclusive lower bound" :: Int,
           'upper : "non-inclusive upper bound" :: Int<GreaterThan(lower)
           )
@@ -8587,7 +8588,7 @@ main:
     observable consequences can take place. Hence trying to re-use
     that memory is a mistake, hence why we make the parameters
     immutable. This has the added benefit of clarifying the intent, if
-    one needs to produce something that is depedent on the parameters,
+    one needs to produce something that is dependent on the parameters,
     they should specify them separately.  Additionally, parameter
     unwrapping is lazy. Unless an explicit unwrap was called, the
     parameters remain encoded as a string. Finally, it is possible
@@ -8605,7 +8606,7 @@ main:
     potentially more fragile Binet's formula.
 
     Unlike many recursive series, there is a closed form solution to
-    the Fibonacci sequence. The only troulble is that the integer is
+    the Fibonacci sequence. The only trouble is that the integer is
     attained by
     \begin{equation}
     F_n = \frac{\phi^n - (-\phi)^{-n}}{\sqrt{5}}
@@ -8644,7 +8645,7 @@ main:
     be regarded as a language keyword, even though it is a plain
     ``variable'', its behaviour should not generally be overridden.
 
-    Ok, so how do we populate the settings?
+    OK, so how do we populate the settings?
     #+begin_example
     settings_strategyNumber :: Setting(Int<NonNegative><LessThan(2)>)
     settings_strategyNumber =
@@ -8660,7 +8661,7 @@ main:
 
     Now the question may arise as to why would you do something like
     that? It is possible that you're in the early stages of porting
-    some C/Fortran code that has no clear distinction between an Int
+    some C/FORTRAN code that has no clear distinction between an Int
     and the value that it enumerates.
 
     But suppose you didn't need to preserve the old APIs, and instead
@@ -8685,13 +8686,13 @@ main:
     takeaway from the entire present work should be that
 
     """ Configuring a program to perform a task in a specific way is
-    indistringuishable from programming in the configuration language
+    indistinguishable from programming in the configuration language
     of the program.  """
 
     In other words, you're not configuring =emacs= or =vim=, you're
     writing a program in =emacs lisp= and =vimscript=. Instead of
     trying to provide a plug-in that in the spirit of GNU guile makes
-    multiple assumptions about the entire codebase, the standard
+    multiple assumptions about the entire code-base, the standard
     library approach in our case would be that the configuration is a
     (dynamic) library that we may link against, that has a bit more
     suitable and terse syntax. This has a few advantages:
@@ -8705,7 +8706,7 @@ main:
        configuration file.
     3) If linking dynamically, you save yourself the overheads of
        choosing a specific configuration format, medium and having to
-       recompile the codebase as soon as something changes in some
+       recompile the code-base as soon as something changes in some
        setting. You also avoid the overheads of parsing the
        configuration file.
     4) The program can define ways in which certain options are to be
@@ -8724,14 +8725,14 @@ main:
        files, including its own.
     7) The configuration is quickly and straightforwardly possible to
        generate in-memory, allowing for things like tests and
-       benchamrks to rely on realistic performance indicators.
+       benchmarks to rely on realistic performance indicators.
     8) If program has configuration presets, common customisation's
        can be shared, so that people that enjoy one's workflow can
        easily adopt it.
     9) Because there's less overhead to adding a setting, more
        settings will be available.
 
-    Thus we get the perofmance of a suckless program, with the
+    Thus we get the performance of a Suckless program, with the
     flexibility of a program that has graphical configuration. With
     clever application of good programming practices, one can turn
     this into a coherent configuration language, where one doesn't
@@ -8753,10 +8754,10 @@ main:
     way. The only difference is that while the settings have to be
     specified one way or another, the options are optional.
 
-* Primitives, enums, constraints
+* Primitives, =enums=, constraints
 
 At this point we come back to the original problem of how do we create
-a type out of a contraint.
+a type out of a constraint.
 
 We should start from simple things.  A unit structure is a placeholder
 that exists solely for the type checking, but doesn't actually contain
@@ -8894,7 +8895,7 @@ In effect, the way that our language/compiler represent the data on
 the heap is contingent on us providing a =represent= function.  It's
 not in any way special, other than the standard library requires you
 to implement this function.  A different library for a different
-architecture will do things differntly.  And since the standard
+architecture will do things differently.  And since the standard
 library is optional, and a module, you can do things a different way.
 But crucially the logic of padding, alignment and figuring out how to
 represent data is /not/ limited to being the compiler's job.  You can,
@@ -8968,7 +8969,7 @@ somewhere saying that
 As such, defining a function with this signature automatically
 constrains the type to be =<BitRepresentable(n)>=.  We think that this
 is the right choice in this particular case, having a bit
-representation is equivalent to being Bit-representable.
+representation is equivalent to being Bit-represent-able.
 
 Note, that in Rust, the equivalent (if it allowed you to control the
 representation at all) would be
@@ -9019,13 +9020,13 @@ the allocated number of words is going to include a whole word for a
 tag, even though there's a free bit.  We've already shown how to do
 it.
 
-Moreover, we cannot have different pathways to being bit-representable
+Moreover, we cannot have different pathways to being bit-represent-able
 in Rust.  The only way, the way which we defined, is to have a
 function =represent= defined for us.  This allows Rust generics to be
 maximally constraining, but also severely limits the ways in which we
-can create explicit pathways to become bit-representable.  Just above
+can create explicit pathways to become bit-represent-able.  Just above
 we added the implication that being =Enumerable= implies being
-bit-representable.  In Rust the equivalent would be
+bit-represent-able.  In Rust the equivalent would be
 
 #+begin_src rust
   impl<T: Enumerable> BitRepresentable for T {
@@ -9042,7 +9043,7 @@ cannot reasonably expect to have any other blanket implementations for
 things that could also be enumerable.
 
 Another thing that Rust can't do, is have a one-or-the-other form of
-implementation. If you are Bit representable then the function
+implementation. If you are Bit represent-able then the function
 represent must exist and have the correct signature.  In our language
 that definition can be (due to currying) arbitrarily variadic. This of
 course could be accomplished by a wrapping marker trait in Rust.
@@ -9098,7 +9099,7 @@ explicitly =.relax=-ed.
 * Some basics
 
 For us to be able to function properly, some forms of basic
-first-kinded types need to be present.  Some languages (C-family)
+first-kind-ed types need to be present.  Some languages (C-family)
 prefer for that to be an array.  The functional family of languages
 most often retain a list, due to it not technically requiring a
 modification of the underlying memory.  Though a language like Python
@@ -9171,9 +9172,9 @@ locations.
 While modestly inefficient in terms of both access and storage space
 (a linked list of bytes, is literally mostly the pointer overhead),
 they can take advantage of RAM in more locations.  If you want to
-store a large number of large datastructures that are accessed either
+store a large number of large data-structures that are accessed either
 from the beginning or the end (but not anywhere else), linked lists
-are just as efficeint as array-based implementations.
+are just as efficient as array-based implementations.
 
 However, they /only/ make sense if what one deals with is a large
 collection of large objects in a highly fragmented memory environment.
@@ -9189,7 +9190,7 @@ either case).
 
 Linked lists, are extremely flexible.  Dynamically typed languages
 (like Python and Lisp) allow linked lists to store arbitrary data.
-Strongly typed languages, like StandardML and Haskell enforce that
+Strongly typed languages, like Standard ML and Haskell enforce that
 data be of some specific type, even if said type could be a union of
 many.  Rust supports both approaches, but wants you to be explicit
 about it: if you want to store a list of anything and everything, you
@@ -9265,3 +9266,7 @@ resolution and not as a rule.
 So, without further ado, what can we do instead.  As a matter of
 paradigm, 
 
+
+# Local Variables:
+# jinx-local-words: "AlgebraicRecord ArchitectureDepedent ArchitectureDependent BetterButStillBad BitRepresentable Bool BuiltIn Coq Crobember DataProfile DivideByZero Encodeable EvenMoreFun ExposedClass FibonacciHeap FireTruck FizzBarBuzz FizzBuzz FizzBuzzBar FloatingPoint GammaFunc Gammafunc Garand Geary GreaterThan Haskells HiddenString Hm IncrediblySexy InputType InputeType IsEqualTo IsGreaterThan IsGreaterthan Kirigami LessThan LikelyRepresentedBy Linde LinksTo MLs MachineWords MeCember MersenneTwister Millner NonNegative NonZero NotEarlierThan Octopi OfType OrdinaryCar OutdoorsOberverSingletonController OutputType PowerOFTwo PowerOfTwo PrintOnly Ptr REPLs Recordd SomeNumber SomethingElse SomethingSexy SpecialNumericDisplay Str SubTask Succ Suckless TooManyFieldsForADataType TopLevel Toplevel TwosComplement Usize WindowBlinds Zig aa accessor addedOn anotherInstance applyArgs arctangent arg args argv arithmeticSeries ascii asm atanNormalised baz bb binet blahFunction ccall ceil checkMergeAbleSorted checksorted childOne childTwo color concat cond couraged defraccculator deref dereference destructor divideBySelf divisibleBy dll doSomethingWithWorld doubleInts dptr dummyRecord eax edi elif emergently enum enumerables enumify exampleuseofSort exposedInstance expr externalState fb fileURL findAnswerToAll fixedLength fizzBuzz fizzbuzz fizzer floot frac fromDisk fromInternet func functionArgs generify geometricSeries greaterThan hasBlahFunction hasFireEquipment imperativity imull instantiation interpSubrountine interpretFromPointer isA isGreaterThan isTrue isType len leq lessThan libbotan lingua linter lowerInc lsp math memoizedRecursiveFib mergesort movl mutify myAlgebraicRecord myRecord namelist nextFun niched num ors pre prettyPrint printf priori privateField proc ptr quicksort ret rst singleNumber somefunc sqrt stderr strategyNumber subscripting tempVal tempp todo tokenisation tokeniser twoInclusive twoNumbers typedef typeof undef upperInc variadic wooow woow"
+# End:

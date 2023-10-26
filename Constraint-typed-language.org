@@ -1,12 +1,19 @@
-#+TITLE: GreyLang
+#+TITLE: NeoAlgol
 #+AUTHOR: Aleksandr Petrosyan
 
 * What this is
 
   Just a collection of thoughts and what can be considered a book on a
   programming language that I have yet to build.  This is very much an
-  early-stage design document so many things will need to go.
-
+  early-stage design document so many things will need to be revised,
+  if not removed.
+  
+  The syntax chosen for this presentation is reminiscent of Algol,
+  though with some modifications.  This is entirely accidental, the
+  syntax was chosen as it fits the ideas better.  The fact that it is
+  reminiscent of the ill-fated Algol 68 might itself be both a
+  blessing and a curse. 
+  
 * Prologue: Meditations on GUI programming.
 
   The catalyst to this document was a collection of thoughts on
@@ -1261,23 +1268,24 @@
        #+END_SRC
 
      I wouldn't call this datatype elegant. But I will give it a few
-     merits: for starters, the datastructure is immutable, as it doesn't
-     implement setters. That's also the reason why it wouldn't compile.
+     merits: for starters, the datastructure is immutable, as it
+     doesn't implement setters. That's also the reason why it wouldn't
+     compile.
 
-     So adding in the trivial setters should achieve what we want, right?
-     Well no. The trivial setters will allow arbitrary code to cause our
-     object to be in an invalid state. So what can we do?
+     So adding in the trivial setters should achieve what we want,
+     right?  Well no. The trivial setters will allow arbitrary code to
+     cause our object to be in an invalid state. So what can we do?
 
      One suggestion is to always check if we are dealing with a
      consistent object after mutation, and cause a runtime error or
-     message if we're not. Another, more important question, is that of
-     the datatype that we're using. Ideally, one has to use signed
+     message if we're not. Another, more important question, is that
+     of the datatype that we're using. Ideally, one has to use signed
      integers wherever possible. Even the creators of the standard
-     library have regretted their decision to make =size_t= an unsigned
-     integral. But do we really need to store all of that extra
-     information to retain normal semantics of arithmetic operations?
-     Perhaps not, but we do this for safety's sake., Nobody wants to have
-     integer overflow.
+     library have regretted their decision to make =size_t= an
+     unsigned integral. But do we really need to store all of that
+     extra information to retain normal semantics of arithmetic
+     operations?  Perhaps not, but we do this for safety's sake.,
+     Nobody wants to have integer overflow.
 
      Not an ideal solution.
 
@@ -1288,77 +1296,312 @@
      day and valid month and Valid Year, and only have to worry about
      their interactions:
 
-     #+BEGIN_SRC haskell
+   #+BEGIN_SRC haskell
+	 data Day = Day Int
+	 data Month = Month Int
+	 data Year = Year Int
 
-  data Day = Day Int
-  data Month = Month Int
-  data Year = Year Int
+	 data Date = (Day, Month, Year)
 
-  data Date = (Day, Month, Year)
+   #+END_SRC
 
-  #+END_SRC
+   Easy, right? Well no. We do get some benefits out of this
+   architecture: you cannot accidentlally misplace the type
+   constructors, and end up with an incoherent mess. Moreover, here
+   you are forced into thinking about the datatype as immutable. If
+   you think about it more than a second, it doesn't make sense for
+   dates to change, but it does make sense to construct and unbox the
+   datatypes in place.
 
-  Easy, right? Well no. We do get some benefits out of this
-  architecture: you cannot accidentlally misplace the type
-  constructors, and end up with an incoherent mess. Moreover, here you
-  are forced into thinking about the datatype as immutable. If you
-  think about it more than a second, it doesn't make sense for dates
-  to change, but it does make sense to construct and unbox the
-  datatypes in place.
+   The unfortunate issue is that while we know that the datatype
+   doesn't change until after construction, the data that we construct
+   it from has to be checked.  The class-oriented approach has the
+   benefit of the datastructure being self-maintaining. Another
+   unfortunate consequence, is that in functional languages all state
+   must be immutable. It makes sense here: you don't change the date
+   to which you schedule your meeting, you use a different date to
+   which to schedule. This doesn't make sense for the =Todo.Item= that
+   we've just defined. It can change state. Moreover, the state change
+   is the main purpose for which the Todo list application exists. For
+   games, a similar argument can be made.
 
-  The unfortunate issue is that while we know that the datatype
-  doesn't change until after construction, the data that we construct
-  it from has to be checked. The class-oriented approach has the
-  benefit of the datastructure being self-maintaining. Another
-  unfortunate consequence, is that in functional languages all state
-  must be immutable. It makes sense here: you don't change the date to
-  which you schedule your meeting, you use a different date to which
-  to schedule. This doesn't make sense for the =Todo.Item= that we've
-  just defined. It can change state. Moreover, the state change is the
-  main purpose for which the Todo list application exists. For games,
-  a similar argument can be made.
+   Another subtle problem is inherent to the way dates are validated.
+   What constitues a valid day, specifically if the value 29, 30 and
+   31 is valid, really depends on the month. All months except
+   February are fine with 30, half are also fine with 31, and for
+   February, 30 and 31 are always wrong. But to make matters worse,
+   whether 29-th of February is a valid date, is a statement that
+   depends on the year. And then the precise algorithm depends on
+   whether or not we are referring to the Gregorian calendar or the
+   Julian calendar. This itself is a messy problem, which can
+   reasonably be said to be attributable to the stupidity of Pope
+   Gregory and allegedly Julius Caesar. The connections to those
+   individuals are as tenuous as the usefulness of the alternative
+   calendars that have been proposed.
 
-  So, we have two gigantically popular paradigms, that both fail at
-  providing a robust and elegant solution... Mayhaps, one should
-  invent a paradigm to specifically address such issues.
+   Even if one tries to avoid the problem of having to skip a day, the
+   problem is really just shifted onto times of year, because
+   depending on the year in question, the counter for when the year
+   has to change technically moves. One cannot be rid of a
+   discontinuity only mask it, and even then poorly. In a procedural,
+   or class-oriented world, this is all fine. The functiona
+   programmers would be told that their type systems are extremely
+   powerful and that this is fine, but the functional paradigm has
+   another problem swept under the rug.
 
-  How about we start from a principle that both paradigms
-  support. That notion of a constraint. One can constrain an otherwise
-  mutable value in C++ to be immutable, with using the keyword
-  =const=. can we extend the idea?
+   Any programming system, has to categorise objects that exist into
+   different types, and everything has a type. This sounds plausible
+   and type theorists would even say that something like =Day= in our
+   example is a reasonable example of a type; which itself is a valid
+   (albeit unfalsifiable) statement. However, languages will mostly
+   differ in terms of the relationship of the type of the object and
+   what constitutes an operation on the object that cannot be
+   performed.
 
-  Perhaps, one could have a semantically similar =positive=, as a
-  language keyword. That would be different from the unsigned keyword
-  in the following ways. First (and foremost), the unsigned is a
-  directive. It narrows the datatype, but not the operations that can
-  be carried out over it. So I can for example subtract two unsigned
-  integers, and moreover, despite the potential mathematical issues,
-  I'm *guaranteed* to receive an unsigned integer in return. Even in
-  case of over and under-flow the type dictates how the data is
-  interpreted, not what data is. unsigned and signed integers, as well
-  as floating point numbers are not distinct, and one can run the same
-  kinds of operations on them. The big difference is that the
-  compiler, knowing that one type is annotated as integral, and the
-  other as floating point, that when we say =a*b= we mean floating
-  point multiplication not any other kind.
+   The crux of the problem is to ask, how is the parsing behaviour
+   related to the type essence of =Date=. The static type school of
+   thought would say that the type inherently and inextricably linked
+   to the procedure of either parsing or validating a particular date.
+   Specifically, they'd say that the parsing procedure must accept as
+   input some more generaliseable /type/ (a fact which we will dispute
+   later): a string of sorts, and produce *some type* that is derived
+   from =Date= as defined above; specifically it's either a Monoid of
+   =Date= or =Date= itself, specifically to signal that the parsing
+   failed. And the validation is similarly an operation that accepts a
+   thing of the type =Date= and its output is a binary: not a type
+   level construct, but either another monoid, or a boolean.
 
-  Re-intepretation of data, is what the type system was supposed to
-  prevent. Segmentation faults became rarer, and making an off-by-one
-  error does not cause a buffer overflow, but the type system is not
-  milked of its full potential. In fact, I would argue that during the
-  80-odd years that the type systems existed, we have not yet explored
-  their full potential.
+   There's also another school of thought. Dynamic typing would
+   suggest that while everything has a type, the type of a thing is
+   not something set in stone for the duration of the execution of the
+   program nor something that the programmer needs to worry about save
+   for a few key moments. As such, the type of a thing that can be
+   used to resolve what operation must be performed in what particular
+   instance. As such, parsing can be done to whenever one needs to
+   interrogate a particular property of a particular instance, and can
+   be postponed, almost indefinitely. From the point of view of
+   dynamic typing, the parsing operation is what determines the type
+   of its output. It *could* be a =Date=, or it could be something
+   else. There is no intrinsic difference between a string containing
+   a valid date, a string with a non-date, and an invalid date, all
+   that changes is what one wants to do with the value afterwards. As
+   such there is no fundamental difference between a string or a
+   =Date= object passed into a function. If a string can be
+   interrogated for presence of a =year=, it *is* a =date= with a
+   lowercase =d=.
 
-  So, how should we proceed? Well, if we think about it, much of what
-  the compiler is doing is constraint checking. Much of programming
-  revolves around makings sure that critical architectural requirements
-  are met, and types are the most basic form of contract. On the one
-  hand, we want to have a system, in which a constraint about the
-  state of a valid instance of a datastructure can be very precise. On
-  the other hand, one should like to be able to abstract away
-  constraints that the programmer does not use, or need. In simple
-  terms, /you want your code to be specific enough to run, but generic
-  enough to be useful./
+   But all paradigms fail in one area. What is a =Day= in this
+   context. In a statically typed world, it would be a type, that is
+   tightly coupled to a =Date=. You could not parse a single =Day= at
+   a time, because whether or not one can parse it, or indeed, whether
+   a given day is a valid value is dependent on the =Date= object's
+   other fields. But it is a class nonetheless. The dynamically typed
+   person would ask the question of how much storage one needs to keep
+   the =Day=, and say that if one had to ask what the type was, just
+   say that it was a single integer of that size. They might even
+   gloat because it allows them to not have to redefine the operations
+   of addition and subtraction. The former would produce a ton of
+   bolierplate code that does not automatically participate everywhere
+   it should, while the latter will very soon realise that the
+   addition of =Day= objects also needs to take care of the month, and
+   so the expression =31+30= is not always meaningful; it can mean how
+   many days are from now to two months later if today is October the
+   first, but the programmer must keep that information in their heads
+   at all times, and will rarely do so.
+
+   Yet another question is whether a =Day= is intrinsically mutable.
+   From the point of view of a class-oriented programmer, sure it is.
+   But you have to do it via a special function called =set=, which
+   will modify the =Day= in such a way that it will always remain
+   valid. One cannot take a =Day= off the shelf, one must define the
+   intricacies of how to preserve the inner state. This is all fine
+   until one realises that it is impossible to do unless one also does
+   the same for =Month= and the same for =Year=. From the point of
+   view of a functional programmer it is not mutable, there are
+   different dates that can be constructed from different inputs. And
+   in a simple world, what one would end up with would be fairly
+   usable; however, as I explained earlier, in order to construct a
+   valid value of type =Day= one must know what month it is, what
+   year, whether or not the current geographical location uses a
+   Gregorian calendar, and since when. Because if your system shows
+   the day of the October revolution in November, it's not exactly
+   accurate to the high standards of functional programming. Moreover,
+   in both cases, the code that tracks these invariants must be
+   generated for each of those objects individually.
+
+   The class-orientation and interfaces in functional programming
+   emerged to solve the problem of the necessity to uphold invariants
+   and to delineate that objects participate in certain interactions a
+   certain way. To put it another way, you don't have the ephemeral
+   property of "30 days hath MeCember and Crobember" for free, and one
+   must define it. But having access to an off-the-shelf =DateTime=
+   object that is merely a count of seconds from the Unix Epoch, one
+   has the same logic but cannot extract it. Static types are assumed
+   to be different until demonstrated to be the same. Dynamic types
+   are assumed to be the same, unless demonstrated to be different. 
+
+   So, we have two gigantically popular paradigms, that both fail at
+   providing a robust /and/ elegant solution, though functional
+   programming succeeds in providing a Robust, and class-oriented
+   programming succeeds at providing an elegant solution individually,
+   it is always at the cost of the counterpart. It is thus, completely
+   unsurprising that programming languages of either persuasion must
+   compensate for the added load of extra work that must be done, with
+   some form of generic programming mechanism. Worse yet, the programs
+   have to actively lie to their users about both the programmers'
+   intentions and the actual end result of executing the code.
+
+   Consider this exact situation in Rust; the functional and OOP approach is
+   accomplished by creating a mutable instance of a structure that has
+   this following definition:
+   #+BEGIN_SRC rust
+	 pub struct Day(u8);
+
+	 pub struct Month(u8);
+
+	 pub struct Year(u8);
+
+	 pub struct Date {
+		 day: Day,
+		 month:  Month,
+		 year: Year
+	 }
+	 #+END_SRC
+One would have you believe that it is thus not possible to mutate
+the object of this instance at all, even if you did declare them to
+be =mut= in some contexts. But that is not true. Even given Rust's
+unstable ABI, it is possible to mutate this object by writing from
+a bit of =unsafe= code and using raw pointers. And crucially in its
+current form, this is just as good a way as any to generate the
+next day. This is accompanied by 
+
+   #+BEGIN_SRC rust
+	 impl Date {
+		 pub fn next_day(self) -> Self {
+			 if self.day.0 < 28 {
+				 Self {
+					 day: self.day.0 + 1,
+					 ..self
+				 } 
+			 } else {
+				 // ... Complex logic
+			 }
+		 }
+	 }
+	 #+END_SRC
+This would seem to suggest that what we are indeed working with is a
+new value of =Date= and yet, the LLVM compiler will /sometimes/
+optimise this functional approach to an in-place mutation. Moreover,
+it would give you, the programmer the impression that the original
+value was cleared, because of the /move-by-default/ semantics of Rust
+function calls. While the compiler knows full-well that what it is
+dealing with is, for all intents and purposes a packed set of bytes
+that is free to lay out as it pleases, you the programmer have to
+pretend that it is an expensive object to copy, and thus have to
+construct dates in a peculiar fashion. Of course, if you want to
+communicate the intent that the object is indeed a value that is
+trivially copyable, you would =£[derive(Copy)]= on it, which would in
+principle fix the breakdown of communication. An OOP-officionado would
+gloat now and say, that indeed the method of defining setters is
+superior, not realising that for one, this approach would be
+significantly less ergonomic to use (one would have to return =&mut
+Self=, to be able to chain setters, using setters falsely communicates
+to the programmer that there would be a function call overhead, when
+indeed the same aggressive inlining would take place. For all of its
+faults, =Python= at least allows setters to use native syntax, but the
+corollary of that, is that the bening-looking assignments that are not
+so bening in most cases, are even more /less-bening/ when in Python; a
+function call in Python can do anything up to and including using an
+actual physical printer when one calls the =print= function, but that
+is a common problem of using functions to control modification. There
+are no other mechanisms that would enforce the interaction.
+
+In either case, one cannot directly mutate a sub-object and be
+confident in that they have enforced the requisite invariants. We have
+no language to express the constraint, and if the programmer was not
+generous enough to leave abundant "comments" to explain what the
+invariant was, one has to reconstruct the invariant from the way in
+which it is enforced.  Moreover, one only has the option of
+disallowing direct mutation, but allowing one to express allowable
+mutations.  It is a safe, though false, assumption that if a type of
+modification was not envisioned when the structure was defined, than
+that it must be disallowed.  The result of that is an explosion of
+code and a slow development cycle, which are bening problems for the
+time being, that can be fixed without altering the system too much.
+
+The real problem is that programmers routinely engage in a kind of
+*doublespeak*, relying on the compiler to optimise certain operations
+that they /know/ are /inefficient/, but that are reliably converted to
+the efficient operations that they intend to use, but which are
+frowned upon by the "best practices" of their programming
+language. The paradigms are no more than a pretence, the objects are
+not opaque and the data is not immutable, yet we write programs as if
+they are, but fully expect the compiler to optimise the code towards
+the dangerous operations.  It's almost as if the type systems are
+inherently incomplete and modifications that work on top of them, are
+insufficient.
+
+There is also a clear description of how programmers think; nowadays,
+every programmer worth their salt decouples the specification of the
+program, as in what the program is meant to do as described in the
+highly abstract sense, from the implementation, which they often quite
+inaccurately reason into being, or sometimes, provide a highly
+specialised version of, as in the disassembly or the intermediate
+representation.  However, rarely if ever do we get the option to
+control how the intermediate representation is being generated, other
+than dealing the opaque compiler. We sacrifice ABI stability, but we
+are rarely involved in the underlying decisions. At the same time, the
+type systems of modern languages do not represent adequately even the
+simple data types. Can we do better?
+
+How about we start from a principle that both paradigms support. That
+notion of a constraint. These would then make types a derived concept
+that agglutinates multiple constraints into one, albeit the point
+being that constraints have an arithmetic that does not have the exact
+same shape as the types do.  One thing can abide by multiple
+constraints.  Moreover, the constraints can somewhat abide by the
+Linde-Millner algebra, and thus some form of constraint inference can
+be implemented. However, the interactions of constraint systems and
+functions can be wildly different, and present itself as a mix of
+static and dynamic typing, with the ability to do things that were
+previously thought of as only possible with a considerable amount of
+effort on the programmers' part. 
+
+Think back to C++. =const= is a constraint, while the enforcement of
+it is up to debate, there are some interesting properties of how it
+works that make it a staple of good design. Perhaps, one could have a
+semantically similar =positive=, as a language keyword. That would be
+different from the unsigned keyword in the following ways. First (and
+foremost), the unsigned is a directive. It narrows the datatype, but
+not the operations that can be carried out over it. So I can for
+example subtract two unsigned integers, and moreover, despite the
+potential mathematical issues, I'm *guaranteed* to receive an unsigned
+integer in return. Even in case of over and under-flow the type
+dictates how the data is interpreted, not what data is. unsigned and
+signed integers, as well as floating point numbers are not distinct,
+and one can run the same kinds of operations on them. The big
+difference is that the compiler, knowing that one type is annotated as
+integral, and the other as floating point, that when we say =a*b= we
+mean floating point multiplication not any other kind.
+
+Re-intepretation of data, is what the type system was supposed to
+prevent. Segmentation faults became rarer, and being off by one in the
+index variable does not cause a buffer overflow. This is not to say
+that types are useless.  In fact, I would argue that during the 80-odd
+years that the type systems existed, we have not yet explored their
+full potential, because we have applied them at a very particular
+level, without really considering the implications. 
+
+So, how should we proceed? Well, if we think about it, much of what
+the compiler is doing is constraint checking. Much of programming
+revolves around makings sure that critical architectural requirements
+are met, and types are the most basic form of contract. On the one
+hand, we want to have a system, in which a constraint about the
+state of a valid instance of a datastructure can be very precise. On
+the other hand, one should like to be able to abstract away
+constraints that the programmer does not use, or need. In simple
+terms, /you want your code to be specific enough to run, but generic
+enough to be useful./
 
 ** The constraint based typing system.
 
@@ -1366,9 +1609,10 @@
    down, rather than bottom-up, as is customary in most other
    programming languages. We shall define a constraint, as the only
    type keyword for the language, and build up the familiar notions of
-   class, object, concept all the way to the particular datatypes. A constraint is an expression of the form
+   class, object, concept all the way to the particular datatypes. A
+   constraint is an expression of the form
 
-   #+begin_example
+         #+begin_example
    <constraint_name> validator.
    #+end_example
 
@@ -1380,7 +1624,7 @@
    <hasBlahFunction> (a) |-> (blahFunction:: type(a) -> * )
    #+end_example
    Assuming a built-in compile time introspection that looks at the
-   source code AST and sees if a blahFunction is defined and has the
+   source code AST and sees if a =blahFunction= is defined and has the
    signature we want. This would exclude many other signatures, like,
    e.g. functions that take a type of a as the second argument, but
    doesn't mind if the return type is not something specific.
@@ -1394,7 +1638,7 @@
    Here we say that a type is enumerable if there exists a mapping that
    takes it onto another enumerable. A subtlety needs to be pointed
    out. The constraint is given an instance of a value or variable, not
-   the type. Hence the anonymous function definition (in) |-> (out) is
+   the type. Hence the anonymous function definition =(in) |-> (out)= is
    used. Of course, the function could have been bound to a name.
 
    So now that we know what constraints are, How do we build up a
@@ -1404,22 +1648,22 @@
    Int ::= One | Succ Int
    #+end_example
 
-   That is the peano definition of an integer. Of course following the
-   example of Coq, we shall use a shorthand for this Datatype and its
-   values, such that five is =5= and not =Succ $ Succ $ Succ $ Succ
-   One= where we've used the Haskell-like =$= notation for
-   parenthesis.
+That is the Peano definition of an integer. Of course following the
+example of Coq, we shall use a shorthand for this Datatype and its
+values, such that five is =5= and not =Succ $ Succ $ Succ $ Succ
+One= where we've used the Haskell-like =$= notation for
+parenthesis.
 
-   So Is it an enum? Yes. But how do we prove it? Well, the first step
-   is to prove that the value =One= is an enum. It obviously is to us,
-   but our constraint didn't say that it was. Hm. Of course, if =one=
-   were an enum, then the function that we wanted to provide that maps
-   it to an enum would exist, the identity. so we can use this to
-   prove that the fact that the literal value One is an enumerable as
-   an ansatz. First we need a working identity function.
+So Is it an =enum=? Yes. But how do we prove it? Well, the first step
+is to prove that the value =One= is an enum. It obviously is to us,
+but our constraint didn't say that it was. Hm. Of course, if =one=
+were an enum, then the function that we wanted to provide that maps
+it to an enum would exist, the identity. so we can use this to
+prove that the fact that the literal value One is an enumerable as
+an ansatz. First we need a working identity function.
 
    #+begin_example
-   id::a* -> a
+id::a* -> a
    id x = x
 
    .ansatz: One :: <enumerable>
@@ -1442,38 +1686,46 @@
    #+begin_example
    predecessor :: Int -> Int
    predecessor a =
-     .case a : Succ n  = n
-     .case a : Succ One = One
+   .case a : Succ n  = n
+   .case a : Succ One = One
    #+end_example
 
-   Of course this is remarkably inefficient. To prove that all
-   integers are enumerable, one has to walk through the entire
-   recursion chain to get to =One=. Of course, one could say, that OK,
-   we're going to assume that the built-in type of integers is
-   enumerable, and that we do not need this kind of trickery. Of
-   course, one has to remember that people are ingenious, and that
-   this whole issue can be averted:
-   #+begin_example
-   divideBySelf::Int -> Int
-   divideBySelf a = One
-   #+end_example
+Of course this is remarkably inefficient. To prove that all
+integers are enumerable, one has to walk through the entire
+recursion chain to get to =One=. Of course, one could say, that OK,
+we're going to assume that the built-in type of integers is
+enumerable, and that we do not need this kind of trickery. Of
+course, one has to remember that people are ingenious, and that
+this whole issue can be averted:
+#+begin_example
+divideBySelf::Int -> Int
+divideBySelf a = One
+#+end_example
    This is cheating. It's clever and remarkably useful cheating. It
    saved the compiler from having to walk the recursion for each
    arbitrary Integer back to square one, each time a constraint needs
    to be checked. Thus many types can be made enumerable. E.g.
 
-   #+begin_example
-   Bool = True | False
-   .ansatz Bool :: <enumerable>
-   #+end_example
+#+begin_example
+Bool = True | False
+.ansatz Bool :: <enumerable>
+#+end_example
 
-   Note that we have abused the notation adopted from Haskell. As we
-   have a very different language, the abuse will be acceptable, but
-   the eagle eyed may be already trying to come up with a counter
-   example, where the expression and its type and constraint cannot be
-   made sane using a =::= notation.
+Note that we have abused the notation adopted from Haskell. As we
+have a very different language, the abuse will be acceptable, but
+the eagle eyed may be already trying to come up with a counter
+example, where the expression and its type and constraint cannot be
+made sane using a =::= notation.
 
-   So a temporary syntactic sugar, would be to say that
+While one might say (quite appropriately) that this is a weakness of
+the language, the syntax itself is irrelevant. It is actually my firm
+belief that if a language follows a very particular semantic meaning
+for objects, the fact that it uses curly braces, or that it has a
+significant semicolon, is about as important as the fact that it uses
+the =\r\n= instead of =\n=, a technical detail that people get too
+hung up on, instead of peering within.
+
+So a temporary syntactic sugar, would be to say that
    #+begin_example
    value :: Type<extra_constraint1, extra_constraint2, >
 
@@ -1553,36 +1805,34 @@
    constraints on the values. e.g. that you would get a compile error
    if you tried to write
 
-   #+begin_example
-   somefunc a b =
-     difference a b
-   #+end_example
+#+begin_example
+somefunc a b = difference a b
+#+end_example
 
-   but not if you wrote
+but not if you wrote
 
-   #+begin_example
-   somefunc a b =
-   if a> b then
-     difference a b
-   #+end_example
+#+begin_example
+somefunc a b =  if a> b then difference a b
+#+end_example
 
-   Hm. What does this mean? Well, it's like Python's duck-typing, only
-   functional. For one, the biggest reason why nested if statements
-   are dis-couraged, and polymoprhic decision-making is *en*-couraged,
-   is that the parallel if statement anti-pattern is a common trap.
+Hm. What does this mean? Well, it's like Python's duck-typing, only
+functional. For one, the biggest reason why nested if statements are
+dis-couraged, and polymoprhic decision-making is *en*-couraged, is
+that the parallel if statement anti-pattern is a common trap. But in
+this case, a redundant constraint check can be caught early and the code -- greatly simplified. 
 
 ** Constraint based Fizz Buzz.
 
-   What a constraint based type system would allow us to do is
-   something that was previously relegated to the realm of high octane
-   academic reading.
+What a constraint based type system would allow us to do is
+something that was previously relegated to the realm of high octane
+academic reading.
 
-   This drinking game is used to test the abilities and style of
-   problem solving amongst up-and-coming programmers. Up until
-   recently, (before anonymous functions became mainstream), solving
-   the problem proper would require quite a bit of thinking.
+This drinking game is used to test the abilities and style of
+problem solving amongst up-and-coming programmers. Up until
+recently, (before anonymous functions became mainstream), solving
+the problem proper would require quite a bit of thinking.
 
-   to illustrate, one can approach the problem simply.
+to illustrate, one can approach the problem simply.
 
    #+BEGIN_SRC python
      def fizzBuzz(n):

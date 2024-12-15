@@ -7,4 +7,101 @@ The functions in NeoAlgol are much more specific than they are Algol68.
 
 We shall impose that functions are mappings from one value to another value.  This is familiar to functional programmers of the ML family.
 
-As such 
+Given our choice, we can neither use the Algol60 nor the Algol68 syntax for functions.  We borrow from ML instead.
+
+** Example: add
+
+*** Generic function
+#+begin_example
+FUN add (a, b) = math'(a+b)
+#+end_example
+is a function that accepts a tuple =(a,b)= for which the expression on the right-hand-side is defined.  The internals of the macro =math= are complex, but the upshot is that it produces code with a function call that constrains the input to be =Additive=.
+
+** Counterexample: add_wrapping
+#+begin_example
+FUN add_wrapping (a, b) where a: Int(64), b: Int(64) = math'(a+b)
+#+end_example
+is an invalid function which accepts a tuple of /type/ =(Int(64), Int(64))=.  The constraints are inferred as follows.  =Int(64)= is =Additive(Int(64))= with =Additive::Result = Int(65)=.
+
+For this function to become valid one of the following needs to occur.
+
+*** Mode instantiation
+As is commonly the case uninstantiated modes, the simplest approach may be to create a structural representation:
+#+begin_example
+INSTANCE Int(65) IS struct (
+  Int(1),
+  Int(64)
+)
+#+end_example
+
+This entails implementing the functions
+#+begin_example
+  IMPL Int(65) Enum (
+    FUN successor a
+    where a: Self =
+      PARTITION MATCH a as Int(65) (
+        (0, lsbs: Bounded(0, predecessor (Int(64) as Bounded)::Max)) = Int(65)(0, successor a)
+  	  (0, lsbs: Bounded(0, (Int(64) as Bounded)::Max) = Int(65)(1, 0)
+  	  (1, lsbs) = (1, successor lsbs)
+  	)
+    END FUN successor
+
+    FUN predecessor a
+    where a: Self =
+      // ...
+    END FUN predecessor
+  END IMPL Enum
+#+end_example
+here we have /chosen/ to annotate the ends of each function definition for readability.
+
+This is often impractical, and because of hardware peculiarities, often not beneficial.  So as a shorthand we can use
+#+begin_example
+INSTANCE Int(65) IS Int(128)
+#+end_example
+which destroys information about the true width of the underlying number and its upper bound.  In order not to have the programmers type in =CONSTRAIN Bounded(0, Int(65)::Max)= every time that information is needed, we can instead declare that this constraint is to be applied at conversion time
+#+begin_example
+INSTANCE Int(65) IS Int(128)
+    CONSTRAIN INHERIT SOURCE Bounded
+    CONSTRAIN INHERIT TARGET FixedWidth
+#+end_example
+
+*** Narrowing inputs
+Manually constraining the inputs to =Int(63)= and =Int(63)= and panic otherwise.
+#+begin_example
+    FUN add_wrapping (a, b) where { a: Int(64), b: Int(64) } =
+	PARTITION (
+	    { a: Int(63), b: Int(63) } =  math'(a+b)
+	    { a: Int(63), _ } = panic' "the number `b` was too large"
+	    { _ } = panic' "the number `a` was too large"
+	)
+#+end_example
+This compiles, because the mode =Int(64)= /partitions/ the mode =Int(63)=.
+
+*** Widening output
+Relaxing the mode =Int(65)= to =Int(128)= on supported platforms.
+#+begin_example
+    FUN add_wrapping (a, b) where { a: Int(64), b: Int(64) } =
+        math'(a+b) RELAX Int(128)
+#+end_example
+This is the least expensive operation, but it also destroys information, re-constraining the number to =Int(65)= can be done with the use of =IMPOSSIBLE= if need be.
+
+*** Overflow as error
+Replace =std::ops::Add::widening_add= with =std::ops::Add::add=.  This function returns =Result(Int(64), Overflow)= and defines a single marker ='overflow= to return a partial result.  We can use this to inject code and to wrap instead of returning =Overflow=.  This alters concrete behaviour so that the constraint inference will accept the output as =Int(64)=.
+#+begin_example
+    FUN add_wrapping (a, b) where { a: Int(64), b: Int(64) } =
+        LET fun = std::ops::Add::add ADVICE 'overflow: (|| return eax_register);
+	CONSTRAIN fun @Result::only_ok_return
+	fun (a,b)
+	#+end_example
+Here we make use of the fact that the marker ='overflow= is activated with the variable =eax_register= that has type =Int(64)= already defined.  On supported platforms (which we have not specified, because this function is only defined on supported platforms, and that constraint is implicit), we =ADVICE= an anonymous procedure that accepts no arguments and evaluates to the statement =return eax_register=.  The ordering of =ADVICE= markers is unambiguous, so we omit the ={}= pair.  After that we apply the rule =@Result::only_ok_return=, to the function.  This in turn resolves the return type of the function to be =Int(64)=.  Finally the prepared function is evaluated.
+
+** Example: variadics
+#+begin_example
+  fun max seq;
+  where
+      seq: Sequence<T>
+      T: TotalOrdered
+  (
+      "Implementation details omitted"
+  )
+#+end_example

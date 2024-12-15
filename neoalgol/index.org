@@ -1,0 +1,15 @@
+#+TITLE: Neo Algol
+
+This is a follow up document to the original description of a constraint-typed language.
+
+This document serves as a more detailed description that is less oriented at "selling" and more at explaining and discussing ideas about how the language ought to be designed.
+
+* Overview
+
+NeoAlgol is a small systems programming language with much of its syntax directly borrowed from the Algol 68 language.
+
+The main reason for this choice, is to provide both a familiar, and different experience.  Differences in nomenclature that were gratuitous in Algol68 are hijacked and reanimated to explain a different concept.
+
+Take the term /mode indicant/ that in any modern programming language is called a /type name/.  This distinction is, for anyone trying to learn Algol68 in this day and age, an excessive use of technical jargon, increasing friction and adding unnecessary obstacles.  In our hands, that same /mode/ and /mode indicant/ distinction can serve the purpose of reminding the programmer not to fall back onto their familiarity with other programming languages, and thus avoid the common pitfalls.  This would also permit us to use the familiar language for concepts that are going to be borrowed from modern programming languages, such as pointers, traits /etc/.
+
+We shall if possible, provide new names for concepts and ideas that are, as far as we know, used in very specific contexts.  Of the notable exceptions, we shall differentiate /functions/ from /procedures/ from /methods/, and from their usual meaning in other programming languages.  The problem here is that these ideas are already distinct in different languages, without a good reason for it.  We shall merely adopt one choice, motivate it, and differentiate.

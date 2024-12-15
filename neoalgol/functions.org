@@ -1,0 +1,10 @@
+#+TITLE: Functions
+#+AUTHOR: Aleksandr Petrosyan
+
+* Overview
+
+The functions in NeoAlgol are much more specific than they are Algol68.
+
+We shall impose that functions are mappings from one value to another value.  This is familiar to functional programmers of the ML family.
+
+As such 
